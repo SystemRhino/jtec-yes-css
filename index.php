@@ -64,9 +64,9 @@ if (isset($_SESSION['login'])) {
 		<button class="btn btn-light" onclick="window.location.href = 'php/add_categoria.php'">Cadastrar Categoria</button>
 		<button class="btn btn-light" onclick="window.location.href = 'php/perfil.php'">Perfil</button>
 			</div>
-		<form method="get" action="php/pesquisar.php">
-			<input class="form-control" type="search" name="pesquisar">
-			<button class="btn btn-light" type="submit" name="buscar">P</button>
+		<form method="get" class="form-row" action="php/pesquisar.php">
+			<input class="form-control col" type="search" name="pesquisar">
+			<button class="btn btn-light col" type="submit" name="buscar">P</button>
 		</form>
 			</nav>
 
@@ -128,6 +128,7 @@ if (isset($_SESSION['login'])) {
 		</div>
 		<!-- FIM MODAL DE CADASTRO -->
 
+		<div class="container">
 		<div class="card-group">
 			<?php 
 			require('php/conecta.php');
@@ -139,9 +140,9 @@ if (isset($_SESSION['login'])) {
 				<div class="card-header"><?php echo $exibir['nm_noticia'];?></div>
 				<div class="card-body"><?php echo $exibir['ds_noticia']."<br>".$exibir['data_post']."&emsp;".$exibir['hora_post'];?></div>
 				<div class="card-footer">
-					<button onclick="window.location.href = 'php/delete_noticia.php?tb=tb_noticia&&id=<?php echo $exibir['id']?>'">Delete</button>
-					<button onclick="window.location.href = 'php/update_noticia.php?tb=tb_noticia&&id=<?php echo $exibir['id']?>'">Editar</button>
-					<button onclick="window.location.href = 'php/view.php?id=<?= $exibir['id']?>'">Ver mais</button>
+					<button class="btn btn-light" onclick="window.location.href = 'php/delete_noticia.php?tb=tb_noticia&&id=<?php echo $exibir['id']?>'">Delete</button>
+					<button class="btn btn-light" onclick="window.location.href = 'php/update_noticia.php?tb=tb_noticia&&id=<?php echo $exibir['id']?>'">Editar</button>
+					<button class="btn btn-light" onclick="window.location.href = 'php/view.php?id=<?= $exibir['id']?>'">Ver mais</button>
 				</div>
 			</div>
 
@@ -149,6 +150,12 @@ if (isset($_SESSION['login'])) {
 			}
 		?>
 		</div>
+		</div>
+
+		<!---container de tempo --->
+	<div class="container col-6 mt-3">
+		<div id="ww_542bff788c995" v='1.3' loc='id' a='{"t":"responsive","lang":"pt","sl_lpl":1,"ids":["wl5155"],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722"}'>Mais previsões: <a href="https://sharpweather.com/weather_rio_de_janeiro/week/" id="ww_542bff788c995_u" target="_blank">RJ weather this week</a></div><script async src="https://app2.weatherwidget.org/js/?id=ww_542bff788c995"></script>
+	</div>
 
 		<p></p>
 </body>
