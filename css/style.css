@@ -1,0 +1,53 @@
+#perfil{
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+}
+.card-group{
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	gap: 5px;
+	margin: 5px;
+}
+.card{
+	height: auto;
+	width: 250px;
+	border: 1px solid silver;
+}
+.carousel-item{
+	height: 350px;
+	width: 1200px;
+}
+li{
+	list-style: none;
+}
+
+li > img{
+	width: 5rem;
+	padding: 5px;
+}
+/* js modo noturno e modo claro 
+
+*{
+	border: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+:root {
+	--hue: 223;
+	--bg: 
+	hsl(var(--
+		hue),10%,90%);
+	--fg:
+	hsl(var(--
+		hue),10%,10%);
+	--light-sh: 
+	hsla(var(--
+		hue),10%,95%,0.5);
+	--dark-sh:
+	hsla(var(--
+		hue),10%,15%,0.4);
+}
+*/
