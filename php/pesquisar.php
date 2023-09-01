@@ -27,29 +27,37 @@
 	<title></title>
 </head>
 <body>
+	<nav class="navbar navbar-lg bg-dark">
 	<form method="get" action="pesquisar.php">
-			<input type="search" name="pesquisar">
-			<button type="submit" name="buscar">P</button>
+		<input class="form-control" type="search" name="pesquisar">
+		<button class="btn btn-light" type="submit" name="buscar">P</button>
 	</form>
+	</nav>
 
 	<?php
 		if (count($resultados)) {
-			echo "<label class='p-2 mt-3'><small>Resultado da busca:</small></label><hr>";
+			?>
+			<label class='p-2 mt-3'><small>Resultado da busca:</small></label><hr>
+			<?php
 			foreach($resultados as $Resultado) {
 	?>
-	<div class="card">
-				<div class="card-header"><?php echo $Resultado['nm_noticia'];?></div>
-				<div class="card-body"><?php echo $Resultado['ds_noticia']."<br>".$Resultado['data_post']."&emsp;".$Resultado['hora_post'];?></div>
-				<div class="card-footer">
-					<button onclick="window.location.href = 'delete_noticia.php?tb=tb_noticia&&id=<?php echo $Resultado['id']?>'">Delete</button>
-					<button onclick="window.location.href = 'update_noticia.php?tb=tb_noticia&&id=<?php echo $Resultado['id']?>'">Editar</button>
-					<button onclick="window.location.href = 'view.php?id=<?= $Resultado['id']?>'">Ver mais</button>
-				</div>
+	<div class="container-fluid">
+	<div class="card-group">
+		<div class="card">
+		<div class="card-header"><?php echo $Resultado['nm_noticia'];?></div>
+		<div class="card-body"><?php echo $Resultado['ds_noticia']."<br>".$Resultado['data_post']."&emsp;".$Resultado['hora_post'];?></div>
+		<div class="card-footer">
+			<button class="btn btn-light" onclick="window.location.href = 'delete_noticia.php?tb=tb_noticia&&id=<?php echo $Resultado['id']?>'">Delete</button>
+			<button class="btn btn-light" onclick="window.location.href = 'update_noticia.php?tb=tb_noticia&&id=<?php echo $Resultado['id']?>'">Editar</button>
+			<button class="btn btn-light" onclick="window.location.href = 'view.php?id=<?= $Resultado['id']?>'">Ver mais</button>
+		</div>
+		</div>
 	</div>
 	<?php
 			} 
 		} else {
 	?>
+	</div>
 
 	<h3>Nenhum resultado encontrado!</h3>
 

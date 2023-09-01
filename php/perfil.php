@@ -11,9 +11,8 @@
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
-	<div>
+	<div class="container col-12">
 		<?php 
-		try{
 			require("conecta.php");
 			$exibicao = $conn->prepare('SELECT * FROM tb_users where id = :id');
 			$exibicao->bindValue("id",$_SESSION['id']);
@@ -22,10 +21,10 @@
 			?>
 
 			<?php
-			if ($_SESSION['nivel'] === 1) {
+			if ($_SESSION['nivel'] == 1) {
 			?>
 
-			<button type="button" data-bs-toggle="collapse" data-bs-target="#collapse" aria-expanded="false" aria-controls="collapse">Usuários</button>
+			<button class="btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapse" aria-expanded="false" aria-controls="collapse">Usuários</button>
 			<div class="collapse" id="collapse">
 				<div>
 					<table>
@@ -40,9 +39,9 @@
 							while ($lista = $listagem->fetch(PDO::FETCH_ASSOC)) {
 						?>
 						<tr>
-							<td><?php echo $lista['nm_user']?></td>
-							<td><?php echo $lista['ds_login']?></td>
-							<td><?php echo $lista['ds_img']?></td>
+							<td><?php echo $lista['nm_user'];?></td>
+							<td><?php echo $lista['ds_login'];?></td>
+							<td><?php echo $lista['ds_img'];?></td>
 						</tr>
 						<?php
 							}
@@ -51,7 +50,7 @@
 
 				</div>
 			</div>
-			<button type="button" data-bs-toggle="collapse" data-bs-target="#collapse-not" aria-expanded="false" aria-controls="collapse">Notícias</button>
+			<button class="btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-not" aria-expanded="false" aria-controls="collapse">Notícias</button>
 			<div class="collapse" id="collapse-not">
 				<div>
 					<table>
@@ -94,7 +93,7 @@
 				</div>
 			</div>
 
-			<button type="button" data-bs-toggle="collapse" data-bs-target="#collapse-cat" aria-expanded="false" aria-controls="collapse">Categorias</button>
+			<button class="btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-cat" aria-expanded="false" aria-controls="collapse">Categorias</button>
 			<div class="collapse" id="collapse-cat">
 				<div>
 					<table>
@@ -127,14 +126,12 @@
 		<p><?php echo $exibir['ds_login'];?></p>
 		<p><?php echo $exibir['ds_senha'];?></p>
 		<p><?php echo $exibir['ds_img'];?></p>
+		
 		<?php
 		}
-			}catch(PDOExcepition $e){
-
-			}
 		?>
-		<button onclick="window.location.href = 'logout.php'">Sair da Conta</button>
-		<button onclick="history.go(-1);">Voltar ao início</button>
+		<button class="btn btn-light" onclick="window.location.href = 'logout.php'">Sair da Conta</button>
+		<button class="btn btn-light" onclick="window.location.href = '../index.php'">Voltar ao início</button>
 	</div>
 </body>
 </html>

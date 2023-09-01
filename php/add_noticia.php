@@ -5,6 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title></title>
 	<script src="../js/jquery-3.6.0.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-5.2.2-dist/css/bootstrap.min.css">
+	<script type="text/javascript" src="../css/bootstrap-5.2.2-dist/js/bootstrap.bundle.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$("#enviar").click(function(){
@@ -27,11 +29,11 @@
 	</script>
 </head>
 <body>
-	<div>
-		<input type="text" id="nome">
-		<input type="text" id="descricao">
-		<input type="number" id="curtida">
-		<select id="categoria">
+	<div class="container col-6">
+		<input class="form-control" type="text" id="nome">
+		<input class="form-control" type="text" id="descricao">
+		<input class="form-control" type="number" id="curtida">
+		<select class="form-control" id="categoria">
 		<option disabled selected>Selecione a categoria</option>
 		<?php
 		require('conecta.php');
@@ -44,7 +46,7 @@
 		}
 		?>
 		</select>
-		<button id="enviar">Enviar</button>
+		<button id="enviar" class="btn btn-light">Enviar</button>
 		<p></p>
 	</div>
 </body>
