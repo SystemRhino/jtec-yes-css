@@ -33,9 +33,9 @@
 	<div class="container bg-light mt-5">
 	<h2><i>Crie sua nova postagem</i></h2>
 		<div id="cadastro" class="container">
-			<div class="group1 col-20">
-				<input class="form-control" type="text" id="nome">
-				<input class="form-control" type="text" id="descricao">
+			<div class="group1">
+				<input class="form-control" placeholder="Título" type="text" id="nome">
+				<textarea class="form-control" placeholder="Descrição..." id="descricao"></textarea>
 			</div>
 
 			<div class="group container col-8">
@@ -54,7 +54,10 @@
 				</select>
 				<img id="imge" src="foto.png">
 				<input class="form-control m-2" type="file" id="img">
-				<button id="enviar" class="btn btn-light">Enviar</button>
+				<div class="btn-group-md gap-2 mb-3">
+					<button onclick="history.go(-1);" class="btn btn-light">Voltar</button>
+					<button id="enviar" class="btn btn-light">Enviar</button>
+				</div>
 			</div>
 
 			</div>

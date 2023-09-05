@@ -32,6 +32,7 @@
 	<div class="container col-6">
 		<input class="form-control" type="text" id="nome">
 		<button class="btn btn-light" id="enviar">Enviar</button>
+		<button onclick="history.go(-1);" class="btn btn-light">Voltar</button>
 	</div>
 	<p></p>
 </body>
