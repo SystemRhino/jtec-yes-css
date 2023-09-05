@@ -26,28 +26,28 @@ li > img{
 	width: 5rem;
 	padding: 5px;
 }
-/* js modo noturno e modo claro 
-
-*{
-	border: 0;
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
+#cadastro{
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1em;
 }
-
-:root {
-	--hue: 223;
-	--bg: 
-	hsl(var(--
-		hue),10%,90%);
-	--fg:
-	hsl(var(--
-		hue),10%,10%);
-	--light-sh: 
-	hsla(var(--
-		hue),10%,95%,0.5);
-	--dark-sh:
-	hsla(var(--
-		hue),10%,15%,0.4);
+.group1{
+	display: grid;
+	grid-template-rows: 50px 300px;
+	gap: 1em;
 }
-*/
+.group{
+	display: grid;
+	grid-template-rows: 50px 200px;
+	gap: 1em;
+}
+#imge{
+	height: 200px;
+	width: 200px;
+	border-radius: 5%;
+	object-fit: cover;
+}
+.pesq{
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+}
