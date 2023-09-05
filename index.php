@@ -64,10 +64,14 @@ if (isset($_SESSION['login'])) {
 		<button class="btn btn-light" onclick="window.location.href = 'php/add_categoria.php'">Cadastrar Categoria</button>
 		<button class="btn btn-light" onclick="window.location.href = 'php/perfil.php'">Perfil</button>
 			</div>
-		<form method="get" class="form-row" action="php/pesquisar.php">
-			<input class="form-control col" type="search" name="pesquisar">
-			<button class="btn btn-light col" type="submit" name="buscar">P</button>
-		</form>
+			
+				<form method="get" class="form-row" action="php/pesquisar.php">
+				<div class="pesq">
+				<input class="form-control" type="search" name="pesquisar">
+				<button class="btn btn-light" type="submit" name="buscar">P</button>
+				</div>
+				</form>
+			
 			</nav>
 
 	<!-- INÍCIO MODAL DE LOGIN -->
