@@ -68,7 +68,7 @@ if (isset($_SESSION['login'])) {
 				<form method="get" class="form-row" action="php/pesquisar.php">
 				<div class="pesq">
 				<input class="form-control" type="search" name="pesquisar">
-				<button class="btn btn-light" type="submit" name="buscar">P</button>
+				<button class="btn btn-light" type="submit" name="buscar"></button>
 				</div>
 				</form>
 			
