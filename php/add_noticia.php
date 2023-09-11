@@ -30,6 +30,7 @@
 	</script>
 </head>
 <body>
+
 	<div class="container bg-light mt-5">
 	<h2><i>Crie sua nova postagem</i></h2>
 		<div id="cadastro" class="container">
@@ -72,5 +73,19 @@
 			image.src = URL.createObjectURL(input.files[0]);
 		});
 	</script>
+	<footer class="container-fluid">
+	<div id="info">
+		<div class="row col-12 bg-light">
+			<p>| Sobre a Etec</p>
+			DESCRIÇÃO DA Etec
+			<p>| Email Informativo</p>
+		</div>
+		<div class="row col-12 bg-light">
+			<p>| Últimos comentários</p>
+			DESCRIÇÃO DA Etec
+			<p>| Email Informativo</p>
+		</div>
+	</div>
+	</footer>
 </body>
 </html>

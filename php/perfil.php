@@ -121,12 +121,16 @@
 			}
 			
 			?>
-
-		<p><?php echo $exibir['nm_user'];?></p>
-		<p><?php echo $exibir['ds_login'];?></p>
-		<p><?php echo $exibir['ds_senha'];?></p>
-		<p><?php echo $exibir['ds_img'];?></p>
+	<div id="per" class="container">
+		<div class="col-4 bg-light"><?php echo $exibir['ds_img'];?>
+			<p><?php echo $exibir['nm_user'];?></p>
+		</div>
+		<div class="col-6 bg-light">
+			<p><?php echo $exibir['ds_login'];?></p>
+			<p><?php echo $exibir['ds_senha'];?></p>
+		</div>
 		
+	</div>
 		<?php
 		}
 		?>
