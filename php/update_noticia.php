@@ -6,6 +6,7 @@
 	<script src="../js/jquery-3.6.0.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap-5.2.2-dist/css/bootstrap.min.css">
 	<script type="text/javascript" src="../css/bootstrap-5.2.2-dist/js/bootstrap.bundle.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
 	<title></title>
 </head>
 <body>
@@ -23,10 +24,16 @@
 		}
 	?>
 
-	<div>
+	<div class="container bg-light mt-5">
+		<div id="cadastro" class="container">
 		<form method="post">
-			<input type="text" name="nm" value="<?php echo ($rows['nm_noticia']);?>">
-			<select name="categoria">
+			<div class="group1">
+			<input class="form-control" type="text" name="nm" value="<?php echo ($rows['nm_noticia']);?>">
+			<textarea class="form-control" name="descricao" id="exampleFormControlTextarea1" rows="3" placeholder="<?php echo ($rows['ds_noticia']);?>"></textarea>
+			</div>
+
+			<div class="group2 container col-8">
+			<select class="form-control" name="categoria">
 				<?php
 				$cd = $rows['id_categoria'];
 				$categoria = $conn->prepare("SELECT * FROM tb_categoria WHERE id = :cd");
@@ -45,15 +52,15 @@
 				}
 				?>
 			</select>
-			<input type="number" name="curtidas" value="<?php echo ($rows['nr_curtidas']);?>">
+			<input class="form-control" type="number" name="curtidas" value="<?php echo ($rows['nr_curtidas']);?>">
 			<input type="date" name="data" value="<?php echo ($rows['data_post']);?>">
 			<input type="datetime" name="hora" value="<?php echo ($rows['hora_post']);?>">
-			<textarea name="descricao" id="exampleFormControlTextarea1" rows="3" placeholder="<?php echo ($rows['ds_noticia']);?>"></textarea>
-			<input type="text" name="img1" value="<?php echo ($rows['img_1']);?>">
-			<input type="text" name="img2" value="<?php echo ($rows['img_2']);?>">
-
-			<input type="submit" name="enviar">
+			<input class="form-control" type="text" name="img1" value="<?php echo ($rows['img_1']);?>">
+			<input class="form-control" type="text" name="img2" value="<?php echo ($rows['img_2']);?>">
+			<input classe="btn btn-light gap-2 mb-3" type="submit" name="enviar">
+			</div>
 		</form>
+			</div>
 	</div>
 
 	<?php
