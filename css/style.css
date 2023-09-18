@@ -9,9 +9,10 @@
 }
 .card-group{
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 	grid-gap: 10px;
 	justify-content: center;
+	overflow: hidden;
 	transition: transform 0.3s ease;
 }
 .card{	
@@ -71,6 +72,9 @@ body {
     flex-direction: column;
 	margin: 0 auto;
 	max-width: auto 100%;
+}
+html{
+    min-height: 100%;
 }
 div.col-4{
 	display: grid;
