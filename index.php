@@ -185,7 +185,31 @@ if (isset($_SESSION['login'])) {
 
 		<script>
 			const cardsContainer = document.querySelector('.card-group');
-			
+			const prevButton = document.querySelector('#prevBtn');
+			const nextButton = document.querySelector('#nextBtn');
+
+			let cardIndex = 0;
+			const cardWidth = 300;
+			const cardsToShow = 4;
+
+			nextButton.addEventListener('click',() => {
+				cardIndex += 1;
+				updateCardPosition();
+			});
+			prevButton.addEventListener('click',() => {
+				cardIndex -= 1;
+				updateCardPosition();
+			});
+
+			function updateCardPosition(){
+				const translateX = -cardIndex * cardWidth * cardToShow;
+				cardsContainer.style.transform = `translateX(${translateX}px)`;
+			}
+
+			if (cardsContainer.children.lenght > cardsToShow){
+				nextButton.style.display = 'block';
+				prevButton.style.display = 'block';
+			}
 		</script>
 </body>
 </html>
