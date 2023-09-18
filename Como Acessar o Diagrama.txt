@@ -1,0 +1,7 @@
+Primeiro entre neste site:
+
+draw.io
+
+Lá irá aparecer botões, clique em 
+"Abrir Diagrama Existente" após isso clique no arquivo
+baixado desta pasta.

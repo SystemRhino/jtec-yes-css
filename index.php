@@ -60,9 +60,26 @@ if (isset($_SESSION['login'])) {
 		<nav class="navbar navbar-lg bg-dark mb-3">
 	<div class="btn-group p-3">
 		<button class="btn btn-light" type="button" data-bs-toggle="modal" data-bs-target="#Modal">Login</button>
+		<button class="btn btn-light" onclick="window.location.href = 'php/perfil.php'">Perfil</button>
+		<?php 
+			require("php/conecta.php");
+			$exibicao = $conn->prepare('SELECT * FROM tb_users where id = :id');
+			$exibicao->bindValue("id",$_SESSION['id']);
+			$exibicao->execute();
+			while ($exibir = $exibicao->fetch(PDO::FETCH_ASSOC)) {
+			?>
+
+			<?php
+			if ($_SESSION['nivel'] == 1) {
+			?>
 		<button class="btn btn-light" onclick="window.location.href = 'php/add_noticia.php'">Cadastrar Notícia</button>
 		<button class="btn btn-light" onclick="window.location.href = 'php/add_categoria.php'">Cadastrar Categoria</button>
-		<button class="btn btn-light" onclick="window.location.href = 'php/perfil.php'">Perfil</button>
+		<?php
+			}else{
+
+			}
+		}
+			?>
 			</div>
 			
 				<form method="get" class="form-row" action="php/pesquisar.php">
@@ -132,7 +149,7 @@ if (isset($_SESSION['login'])) {
 		</div>
 		<!-- FIM MODAL DE CADASTRO -->
 				
-		<div class="container-fluid">
+		<div  id="container-card" class="container">
 		<b><i>|</b> Novas Notícias</i>
 		<div class="card-group">
 			<?php 
@@ -155,6 +172,8 @@ if (isset($_SESSION['login'])) {
 			}
 		?>
 		</div>
+			 <button id="prevBtn">Anterior</button>
+			 <button id="nextBtn">Próximo</button>
 		</div>
 
 		<!---container de tempo --->
@@ -163,6 +182,11 @@ if (isset($_SESSION['login'])) {
 	</div>
 
 		<p></p>
+
+		<script>
+			const cardsContainer = document.querySelector('.card-group');
+			
+		</script>
 </body>
 </html>
 <?php 
