@@ -3,23 +3,66 @@
 	height: 80px;
 	border-radius: 50%;
 }
-#container-card{
-	position: relative;
-	overflow: hidden;
+
+/* CSS PÁGINA PERFIL */
+#group-perfil{
+	width: 100%;
+	background: #1173CD;
+	padding: 10px;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-columns: 215px auto;
+
 }
+#perfil-img{
+	margin: 10px;
+	min-width: 80px;
+	width: 200px;
+	height: 200px;
+	border-radius: 10px;
+	display: grid;
+	grid-template-rows: 200px 50px;
+}
+#login-pass{
+	display: grid;
+	grid-template-rows: 25px;
+	gap: 5px;
+	padding: 10px;
+}
+
+/*CSS DO INDEX */
 .card-group{
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
 	grid-gap: 10px;
 	justify-content: center;
 	overflow: hidden;
 	transition: transform 0.3s ease;
 }
 .card{	
-	height: 300px;
+	height: 350px;
 	width: 100%;
 	border: 1px solid silver;
+	align-items: center;
 }
+.pesq{
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-columns: 200px 90px;
+	gap: 5px ;
+}
+#img-card{
+	width: 250px;
+	height: 200px;
+	border-radius: 5%;
+	object-fit: cover;
+}
+@media only screen and (max-width: 250px) {
+  #img-card {
+    width: 100%;
+  }
+}
+
 
 li{
 	list-style: none;
@@ -29,6 +72,8 @@ li > img{
 	width: 5rem;
 	padding: 5px;
 }
+
+/* CSS DO CADASTRAR NOTÍCIA */
 #cadastro{
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
@@ -55,10 +100,45 @@ li > img{
 	border-radius: 5%;
 	object-fit: cover;
 }
-.pesq{
+
+/* CSS UPDATE NOTÍCIA */
+#form-up{
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
+	gap: 5px;
+	padding: 5px;
 }
+.group-up{
+	display: grid;
+	grid-template-rows: 50px 300px;
+	gap: 5px;
+}
+.group-up2{
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-columns: 300px 200px;
+	gap: 5px;
+	align-items: center;
+}
+
+/* CSS DA PÁGINA DE VISUALIZAÇÃO DE NOTÍCIA */
+#view-noticia{
+	padding: 10px;
+		background: #DCD8D8;
+	}
+#view-img{
+	height: 400px;
+	width: 380px;
+	border-radius: 5%;
+	object-fit: cover;
+}
+@media only screen and (max-width: 380px) {
+  #view-img {
+    width: 100%;
+  }
+}
+
+
 #info{
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
@@ -84,7 +164,4 @@ div.col-6{
 	display: grid;
 	grid-template-rows: 50px 200px;
 }
-#per{
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-}
+
