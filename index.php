@@ -1,7 +1,7 @@
 <?php 
 session_start();
 if (isset($_SESSION['login'])) {
-		header("location:php/perfil.php");
+		header("Location:php/perfil.php");
 	}
 	else{
 ?>
@@ -16,24 +16,24 @@ if (isset($_SESSION['login'])) {
 	<script src="js/jquery-3.6.0.min.js"></script>
 	<title></title>
 	<script type="text/javascript">
-		$(document).ready(function(){
-			$("#enviar").click(function(){
-  			$.ajax({
-  				url: "php/cadastro_user.php",
-  				type: "POST",
-  				data: "login="+$("#login").val()+"&senha="+$("#senha").val()+"&nm="+$("#nm").val()+"&img="+$("#img"),
-  				dataType: "html"
-  			}).done(function(resposta) {
-	    $("p").html(resposta);
+		//$(document).ready(function(){
+			//$("#enviar").click(function(){
+  			//$.ajax({
+  				//url: "php/cadastro_user.php",
+  				//type: "POST",
+  				//data: "login="+$("#login").val()+"&senha="+$("#senha").val()+"&nm="+$("#nm").val(),
+  				//dataType: "html"
+  			//}).done(function(resposta) {
+	    //$("p").html(resposta);
 
-		}).fail(function(jqXHR, textStatus ) {
-	    console.log("Request failed: " + textStatus);
+		//}).fail(function(jqXHR, textStatus ) {
+	    //console.log("Request failed: " + textStatus);
 
-		}).always(function() {
-	    console.log("completou");
-		});
-  			});
-				});
+		//}).always(function() {
+	    //console.log("completou");
+		//});
+  			//});
+				//});
 	</script>
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -70,25 +70,24 @@ if (isset($_SESSION['login'])) {
 			?>
 
 			<?php
-			if ($_SESSION['nivel'] == 1) {
 			?>
 		<button class="btn btn-light" onclick="window.location.href = 'php/add_noticia.php'">Cadastrar Notícia</button>
 		<button class="btn btn-light" onclick="window.location.href = 'php/add_categoria.php'">Cadastrar Categoria</button>
 		<?php
-			}else{
 
 			}
-		}
 			?>
+
 			</div>
 			
 				<form method="get" class="form-row" action="php/pesquisar.php">
 				<div class="pesq">
 				<input class="form-control" type="search" name="pesquisar">
-				<button class="btn btn-light" type="submit" name="buscar"></button>
+				<button type="submit" class="btn btn-outline-primary" name="buscar">Buscar</button>
 				</div>
 				</form>
-			
+							
+
 			</nav>
 
 	<!-- INÍCIO MODAL DE LOGIN -->
@@ -127,14 +126,15 @@ if (isset($_SESSION['login'])) {
         				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       				</div>
       					<div class="modal-body">
+      						<form action="php/cadastro_user.php" method="POST" enctype="multipart/form-data">
       						Crie um Login:<br>
-        					<input type="text" class="form-control" id="login">
+        					<input type="text" class="form-control" name="login">
         					Senha:<br>
-        					<input type="text" class="form-control" id="senha">
+        					<input type="text" class="form-control" name="senha">
         					Seu nome:<br>
-        					<input type="text" class="form-control" id="nm">
-        					Imagem:<br>
-        					<input type="text" class="form-control" id="img">
+        					<input type="text" class="form-control" name="nm">
+								<label for="imagem">Imagem:</label>
+								<input type="file" name="imagem"/><br>
         					<span></span>
       					</div>
       				<div class="modal-footer">
@@ -142,14 +142,16 @@ if (isset($_SESSION['login'])) {
   						Faça seu login
 						</button>
         				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-        				<button type="button" class="btn btn-warning" id="enviar">Cadastrar</button>
+        				<button type="submit" class="btn btn-warning" id="enviar">Cadastrar</button>
+        			</form>
       				</div>
     			</div>
   			</div>
 		</div>
 		<!-- FIM MODAL DE CADASTRO -->
+
 				
-		<div  id="container-card" class="container">
+	<div class="container">
 		<b><i>|</b> Novas Notícias</i>
 		<div class="card-group">
 			<?php 
@@ -157,24 +159,26 @@ if (isset($_SESSION['login'])) {
 			$exibicao = $conn->prepare('SELECT * FROM tb_noticia');
 			$exibicao->execute();
 			while ($exibir = $exibicao->fetch(PDO::FETCH_ASSOC)) {
-		?>
+			?>
 			<div class="card">
-				<div class="card-header"><?php echo $exibir['nm_noticia'];?></div>
-				<div class="card-body"><?php echo $exibir['ds_noticia']."<br>".$exibir['data_post']."&emsp;".$exibir['hora_post'];?></div>
+				<div class="card-header">
+					<img id="img-card" src="php/img/<?php echo $exibir['img_1'];?>">
+				</div>
+				<div class="card-body">
+					<?php echo $exibir['nm_noticia'];?>
+					<?php echo $exibir['ds_noticia']."<br>".$exibir['data_post']."&emsp;".$exibir['hora_post'];?></div>
 				<div class="card-footer">
-					<button class="btn btn-light" onclick="window.location.href = 'php/delete_noticia.php?tb=tb_noticia&&id=<?php echo $exibir['id']?>'">Delete</button>
+					<button class="btn btn-danger" onclick="window.location.href = 'php/delete_noticia.php?tb=tb_noticia&&id=<?php echo $exibir['id']?>'">Delete</button>
 					<button class="btn btn-light" onclick="window.location.href = 'php/update_noticia.php?tb=tb_noticia&&id=<?php echo $exibir['id']?>'">Editar</button>
 					<button class="btn btn-light" onclick="window.location.href = 'php/view.php?id=<?= $exibir['id']?>'">Ver mais</button>
 				</div>
 			</div>
 
-		<?php
-			}
-		?>
+			<?php
+				}
+			?>
 		</div>
-			 <button id="prevBtn">Anterior</button>
-			 <button id="nextBtn">Próximo</button>
-		</div>
+	</div>
 
 		<!---container de tempo --->
 	<div class="container col-6 mt-3">
@@ -183,34 +187,6 @@ if (isset($_SESSION['login'])) {
 
 		<p></p>
 
-		<script>
-			const cardsContainer = document.querySelector('.card-group');
-			const prevButton = document.querySelector('#prevBtn');
-			const nextButton = document.querySelector('#nextBtn');
-
-			let cardIndex = 0;
-			const cardWidth = 300;
-			const cardsToShow = 4;
-
-			nextButton.addEventListener('click',() => {
-				cardIndex += 1;
-				updateCardPosition();
-			});
-			prevButton.addEventListener('click',() => {
-				cardIndex -= 1;
-				updateCardPosition();
-			});
-
-			function updateCardPosition(){
-				const translateX = -cardIndex * cardWidth * cardToShow;
-				cardsContainer.style.transform = `translateX(${translateX}px)`;
-			}
-
-			if (cardsContainer.children.lenght > cardsToShow){
-				nextButton.style.display = 'block';
-				prevButton.style.display = 'block';
-			}
-		</script>
 </body>
 </html>
 <?php 
