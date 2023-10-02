@@ -121,12 +121,16 @@
 			}
 			
 			?>
-	<div id="per" class="container">
-		<div class="col-4 bg-light"><?php echo $exibir['ds_img'];?>
-			<p><?php echo $exibir['nm_user'];?></p>
+	<div id="group-perfil" class="container col-12">
+		<div class=" bg-light">
+			<img id="perfil-img" src="img/<?php echo $exibir['ds_img'];?>">
 		</div>
-		<div class="col-6 bg-light">
+		<div id="login-pass" class=" bg-light">
+			<h6>Seu Nome:</h6>
+			<p><?php echo $exibir['nm_user'];?></p>
+			<h6>Seu Login:</h6>
 			<p><?php echo $exibir['ds_login'];?></p>
+			<h6>Sua Senha:</h6>
 			<p><?php echo $exibir['ds_senha'];?></p>
 		</div>
 		
@@ -135,7 +139,8 @@
 		}
 		?>
 		<button class="btn btn-light" onclick="window.location.href = 'logout.php'">Sair da Conta</button>
-		<button class="btn btn-light" onclick="window.location.href = '../index.php'">Voltar ao início</button>
+		<button class="btn btn-light" onclick="history.go(-1);">Voltar</button>
+		<button class="btn btn-danger" onclick="window.location.href = 'delete_user.php?tb=tb_users&&id=<?php echo $exibir['id']?>'">Excluir perfil</button>
 	</div>
 </body>
 </html>

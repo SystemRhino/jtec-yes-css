@@ -28,10 +28,14 @@
 </head>
 <body>
 	<nav class="navbar navbar-lg bg-dark">
-	<form method="get" action="pesquisar.php">
-		<input class="form-control" type="search" name="pesquisar">
-		<button class="btn btn-light" type="submit" name="buscar">P</button>
-	</form>
+
+		<form method="get" class="form-row" action="pesquisar.php">
+			<div class="pesq">
+				<input class="form-control" type="search" name="pesquisar">
+				<button type="submit" class="btn btn-outline-primary" name="buscar">Buscar</button>
+			</div>
+		</form>
+						
 	</nav>
 
 	<?php
@@ -42,18 +46,20 @@
 			foreach($resultados as $Resultado) {
 	?>
 	<div class="container-fluid">
-	<div class="card-group">
-		<div class="card">
-		<div class="card-header"><?php echo $Resultado['nm_noticia'];?></div>
-		<div class="card-body"><?php echo $Resultado['ds_noticia']."<br>".$Resultado['data_post']."&emsp;".$Resultado['hora_post'];?></div>
-		<div class="card-footer">
-			<button class="btn btn-light" onclick="window.location.href = 'delete_noticia.php?tb=tb_noticia&&id=<?php echo $Resultado['id']?>'">Delete</button>
-			<button class="btn btn-light" onclick="window.location.href = 'update_noticia.php?tb=tb_noticia&&id=<?php echo $Resultado['id']?>'">Editar</button>
-			<button class="btn btn-light" onclick="window.location.href = 'view.php?id=<?= $Resultado['id']?>'">Ver mais</button>
+		<div class="card-group">
+			<div class="card">
+				<div class="card-header">
+					<img id="img-card" src="img/<?php echo $Resultado['img_1'];?>">
+				</div>
+				<div class="card-body">
+					<?php echo $Resultado['nm_noticia'];?>
+					<?php echo $Resultado['ds_noticia']."<br>".$Resultado['data_post']."&emsp;".$Resultado['hora_post'];?></div>
+				<div class="card-footer">
+					<button class="btn btn-light" onclick="window.location.href = 'view.php?id=<?= $Resultado['id']?>'">Ver mais</button>
+				</div>
+			</div>
 		</div>
-		</div>
-	</div>
-	<?php
+		<?php
 			} 
 		} else {
 	?>

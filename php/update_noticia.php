@@ -25,14 +25,14 @@
 	?>
 
 	<div class="container bg-light mt-5">
-		<div id="cadastro" class="container">
-		<form method="post">
-			<div class="group1">
+		<div class="update container">
+		<form id="form-up" method="post">
+			<div class="group-up">
 			<input class="form-control" type="text" name="nm" value="<?php echo ($rows['nm_noticia']);?>">
 			<textarea class="form-control" name="descricao" id="exampleFormControlTextarea1" rows="3" placeholder="<?php echo ($rows['ds_noticia']);?>"></textarea>
 			</div>
 
-			<div class="group2 container col-8">
+			<div class="group-up2 container">
 			<select class="form-control" name="categoria">
 				<?php
 				$cd = $rows['id_categoria'];
@@ -53,13 +53,11 @@
 				?>
 			</select>
 			<input class="form-control" type="number" name="curtidas" value="<?php echo ($rows['nr_curtidas']);?>">
-			<input type="date" name="data" value="<?php echo ($rows['data_post']);?>">
-			<input type="datetime" name="hora" value="<?php echo ($rows['hora_post']);?>">
-			<input class="form-control" type="text" name="img1" value="<?php echo ($rows['img_1']);?>">
-			<input class="form-control" type="text" name="img2" value="<?php echo ($rows['img_2']);?>">
-			<input classe="btn btn-light gap-2 mb-3" type="submit" name="enviar">
+			<input type="date" class="form-control" name="data" value="<?php echo ($rows['data_post']);?>">
+			<input type="datetime" class="form-control" name="hora" value="<?php echo ($rows['hora_post']);?>">
+			<button class="btn btn-light mb-2" type="submit" name="enviar">Enviar</button>
 			</div>
-		</form>
+			</form>
 			</div>
 	</div>
 
@@ -70,21 +68,18 @@
 
 		$nome = $_POST['nm'];
 		$ds = $_POST['descricao'];
-		$img1 = $_POST['img1'];
-		$img2 = $_POST['img2'];
 		$nr = $_POST['curtidas'];
 		$data = $_POST['data'];
 		$hr = $_POST['hora'];
 		$categoria = $_POST['categoria'];
 
-	$update = "UPDATE tb_noticia SET nm_noticia = :nm, ds_noticia = :ds, img_1 = :img1, img_2 = :img2, nr_curtidas = :nr, data_post = :dt, hora_post = :hr, id_categoria = :idc WHERE id = :id";
+		
+	$update = "UPDATE tb_noticia SET nm_noticia = :nm, ds_noticia = :ds, nr_curtidas = :nr, data_post = :dt, hora_post = :hr, id_categoria = :idc WHERE id = :id";
 	$update = $conn->prepare($update);
 
 	$update->bindParam(':id',$id);
 	$update->bindParam(':nm',$nome);
 	$update->bindParam(':ds',$ds);
-	$update->bindParam(':img1',$img1);
-	$update->bindParam(':img2',$img2);	
 	$update->bindParam(':nr',$nr);
 	$update->bindParam(':dt',$data);
 	$update->bindParam(':hr',$hr);
@@ -100,6 +95,7 @@
 		header('location:../index.php');
 	}
 	}
+
 	?>
 </body>
 </html>

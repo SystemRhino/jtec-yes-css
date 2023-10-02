@@ -15,6 +15,8 @@
 
 			echo "<meta HTTP-EQUIV='refresh' CONTENT='0'>";
 		}else{
-			echo "usuario ou senha incorretos!";
+			$strong = "Usuário ou senha incorretos!";
+			$text = "Tente Novamente.";
+			include('error.php');
 		}
 ?>
