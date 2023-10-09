@@ -37,6 +37,7 @@ $text = "Últimas Notícias";
 <head>
 	<meta charset="utf-8">
 	<title>Home | J-Tec	</title>
+	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <!-- Nav -->
@@ -47,6 +48,48 @@ $text = "Últimas Notícias";
 	<button onclick="window.location.href = 'index.php?categoria=<?= $categoria['id']?>'"><?php echo $categoria['nm_categoria']; ?></button>
 <?php } ?>
 <hr>
+
+<!-- Carrossel -->
+<div class="container-fluid">
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="OIP.jpg" class="img-fluid" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                  <h5>First slide label</h5>
+                  <p>Some representative placeholder content for the first slide.</p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img src="OIP.jpg" class="img-fluid" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                  <h5>Second slide label</h5>
+                  <p>Some representative placeholder content for the second slide.</p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img src="OIP.jpg" class="img-fluid" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                  <h5>Third slide label</h5>
+                  <p>Some representative placeholder content for the third slide.</p>
+                </div>
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+    </div>
 
 <!-- While Últimas Noticias -->
 	<h1><?php echo $text?></h1>
@@ -83,11 +126,15 @@ $script_nome_autor_alta = $conn->prepare("SELECT * FROM tb_users WHERE id = '$id
 $script_nome_autor_alta->execute();
 $nome_autor_alta = $script_nome_autor_alta->fetch(PDO::FETCH_ASSOC);
 ?>
-		<div onclick="window.location.href = 'view.php?id=<?= $noticia_alta['id']?>'">
+
+	<div class="card-group">
+		<div class="card" onclick="window.location.href = 'view.php?id=<?= $noticia_alta['id']?>'">
 			<img width="150" height="150" src="img/<?php echo $noticia_alta['img_1']; ?>">	
 			<p><?php echo $noticia_alta['nm_noticia']."<br>"; ?></p>
 			<p>Autor: <?php echo $nome_autor_alta['nm_user']."<br>"; ?></p>
   		</div>
+	</div>
+
 <?php }}?>
 
 <!-- Notícias Populares -->
@@ -103,20 +150,6 @@ $nome_autor_popular = $script_nome_autor_popular->fetch(PDO::FETCH_ASSOC);
 			<p><?php echo $noticia_populares['nm_noticia']."<br>"; ?></p>
 			<p>Autor: <?php echo $nome_autor_popular['nm_user']."<br>"; ?></p>
   		</div>
-<?php }?>
-
-<!-- While Comentarios -->
-<hr>
-<h1>Últimos comentarios</h1>
-<?php  
-while ($comentario = $script_comentarios->fetch(PDO::FETCH_ASSOC)) {
-	$id_user = $comentario['id_user'];
-	$script_users = $conn->prepare("SELECT * FROM tb_users WHERE id ='$id_user'");
-	$script_users->execute();	
-	$user = $script_users->fetch(PDO::FETCH_ASSOC);
-	?>
-	<b><?php echo $user['nm_user'];?></b><p><i><?php echo $comentario['comentario']?></i></p><p><?php echo $comentario['data'];?></p>
-	<hr>
 <?php }?>
 
 <!-- Footer -->
