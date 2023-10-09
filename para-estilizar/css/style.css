@@ -1,0 +1,53 @@
+/* CSS INDEX */
+.card-group{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    justify-content: center;
+    margin: 10px;
+    gap: 10px;
+}
+.card{
+    width: 100%;
+    max-width: 500px;
+    height: 450px;
+    box-shadow: 2px 2px 15px;
+}
+.container-fluid{
+    max-width: 800px;          
+    width: 100%;            
+    height: auto;  
+
+}
+img{
+    max-width: 800px;   /* Máximo da largura da imagem */          
+    width: 100%;          
+    max-height: 400px;  /* Máximo da altura da imagem */          
+    min-height: auto; 
+}
+
+/* CSS NAV */
+nav{
+    width: 100%;
+    height: auto;
+    background-color: #1d1d1d;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 40px;
+}
+.btn-group{
+    width: 350px;
+    height: auto;
+}
+.col-6{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 350px 90px;
+}
+
+/* CSS FOOTER */
+footer{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
