@@ -122,3 +122,15 @@ DEFAULT CHARACTER SET = latin1;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+INSERT INTO `jtec`.`tb_users` (`id`, `ds_login`, `ds_senha`, `nm_user`, `ds_img`, `id_nivel`) VALUES ('1', 'teste@gmail.com', 'teste', 'teset', 'user.png', '1');
+
+INSERT INTO `jtec`.`tb_categoria` (`id`, `nm_categoria`) VALUES ('1', 'Categoria 1');
+INSERT INTO `jtec`.`tb_categoria` (`id`, `nm_categoria`) VALUES ('2', 'Categoria 2');
+
+INSERT INTO `jtec`.`tb_nivel` (`id`, `nm_nivel`) VALUES ('1', 'Admin');
+
+INSERT INTO `jtec`.`tb_noticia` (`id`, `nm_noticia`, `ds_noticia`, `img_1`, `nr_curtidas`, `id_categoria`, `id_autor`, `views`) VALUES ('1', 'Titulo 1', 'Descircao', 'etec.jpg', '0', '1', '1', '0');
+
+
