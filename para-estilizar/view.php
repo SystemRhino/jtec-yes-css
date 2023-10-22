@@ -65,7 +65,7 @@ $att_views->execute();
 	<div class="container">
     <div class="header-noticia">
       <h2><?php echo $noticia['nm_noticia']; ?></h2>
-	    <img height="450" width="700" src="img/<?php echo $noticia['img_1'];?>">
+	    <img id="img-noticia" src="img/<?php echo $noticia['img_1'];?>">
     </div>
 	<p><?php // echo $noticia['ds_noticia']; ?></p>
   <p>Um dia descobrimos que beijar uma pessoa para esquecer outra é bobagem.
@@ -84,8 +84,10 @@ O jeito é: ou nos conformamos com a falta de algumas coisas na nossa vida ou lu
   <i><?php echo $noticia['data_post']; ?></i>
 	<p><?php echo $noticia['nr_curtidas']; ?></p>
 </div>
+
+    <!-- Campo do autor -->
   <div>
-    <div id="div-autor" class="container">
+    <div id="div-autor" class="container shadow w-75 bg-light">
 		  <img id="img-autor" width="20" height="20" src="img/<?php echo $autor['ds_img']; ?>">
 	    <div>
 		    <b><?php echo $autor['nm_user'];?></b>
@@ -144,7 +146,7 @@ O jeito é: ou nos conformamos com a falta de algumas coisas na nossa vida ou lu
 	  <div class="card-group">
       <?php while ($noticia_categoria = $script_noticias_categoria->fetch(PDO::FETCH_ASSOC)) { ?>
 		    <div class="card" onclick="window.location.href = 'view.php?id=<?= $noticia_categoria['id']?>'">
-			    <img width="150" height="150" src="img/<?php echo $noticia_categoria['img_1']; ?>">	
+			    <img src="img/<?php echo $noticia_categoria['img_1']; ?>">	
 			    <h5><?php echo $noticia_categoria['nm_noticia']."<br>"; ?></h5>
           <p><?php echo $noticia_categoria['ds_noticia']."<br>"; ?></p>
   		  </div>

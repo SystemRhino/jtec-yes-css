@@ -9,17 +9,26 @@ if (isset($_SESSION['id'])) {
 <html>
 <head>
 	<title>Login | J-tec</title>
-	<meta s>
-</head>
+	<meta charset="utf-8">
+	</head>
 <body>
-
+	<?php include('nav.php');?>
 	<!-- Tag "span" usada para retorno do ajax -->
 	<span></span><br>
 
-<input type="email" id="login" placeholder="E-mail"><br>
-<input type="text" id="password" placeholder="Senha"><br>
-<button id="entrar">Entrar</button><br>
-<a href="cadastro.php">Cadastrar</a>
+	<div class="container-fluid text-center">
+		<h2>Informe seus dados e faça seu login!</h2>
+		<div class="form-floating mb-3 mt-3">
+			<input class="form-control" type="email" id="login" placeholder="exemplo@gmail.com">
+			<label for="login">Digite seu e-mail!</label>
+		</div>
+		<div class="form-floating mb-3">
+			<input class="form-control" type="text" id="password" placeholder="Senha123">
+			<label for="password">Sua senha</label>
+		</div>
+		<button class="btn btn-primary m-3" id="entrar">Entrar</button>
+		<h6>Não é usuário? Entre <a href="cadastro.php">aqui!</a></h6>
+	</div>
 </body>
 	<!-- JS -->
 	<script src="js/jquery-3.6.0.min.js"></script>

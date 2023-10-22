@@ -94,22 +94,22 @@ $text = "Últimas Notícias";
           </div>
     </div>
 
-<!-- While Últimas Noticias -->
-<div class="container m-5">
-	<h1><?php echo $text?></h1>
-<div class="card-group">
-<?php
-// Verificação se tem noticias
-if ($script_noticias->rowCount()>0){
-while ($noticia = $script_noticias->fetch(PDO::FETCH_ASSOC)) { 
-//Consulta Autor
-$id_autor = $noticia['id_autor'];
-$script_nome_autor = $conn->prepare("SELECT * FROM tb_users WHERE id = '$id_autor'");
-$script_nome_autor->execute();
-$nome_autor = $script_nome_autor->fetch(PDO::FETCH_ASSOC);
-?>
+  <!-- While Últimas Noticias -->
+  <div class="container m-5">
+	 <h1><?php echo $text?></h1>
+  <div class="card-group">
+    <?php
+      // Verificação se tem noticias
+      if ($script_noticias->rowCount()>0){
+      while ($noticia = $script_noticias->fetch(PDO::FETCH_ASSOC)) { 
+      //Consulta Autor
+      $id_autor = $noticia['id_autor'];
+      $script_nome_autor = $conn->prepare("SELECT * FROM tb_users WHERE id = '$id_autor'");
+      $script_nome_autor->execute();
+      $nome_autor = $script_nome_autor->fetch(PDO::FETCH_ASSOC);
+    ?>
 		<div class="card" onclick="window.location.href = 'view.php?id=<?= $noticia['id'];?>'">
-			<img class="img-thumbnail" width="150" height="200" src="img/<?php echo $noticia['img_1']; ?>">	
+			<img src="img/<?php echo $noticia['img_1']; ?>">	
       <div class="card-body">
 			  <h5><?php echo $noticia['nm_noticia'];?></h5>
         <?php echo $noticia['ds_noticia'];?>
@@ -118,27 +118,27 @@ $nome_autor = $script_nome_autor->fetch(PDO::FETCH_ASSOC);
 			  <p>Autor: <?php echo $nome_autor['nm_user']; ?></p>
       </div>
   	</div>
-<?php 
-}
-}else{
-	echo "Sem noticia";
-}
+    <?php 
+        }
+      }else{
+	       echo "Sem noticia";
+      }
 
-// Verificação se tem filtro
-if(!isset($_GET['categoria'])){ ?>
-</div>
+      // Verificação se tem filtro
+      if(!isset($_GET['categoria'])){ ?>
+  </div>
 
-<!-- Notícias em Alta -->
-<h1>Em Alta</h1>
-<div class="card-group">
-<?php while ($noticia_alta = $script_noticias_alta->fetch(PDO::FETCH_ASSOC)) { 
-$id_autor_alta = $noticia_alta['id_autor'];
-$script_nome_autor_alta = $conn->prepare("SELECT * FROM tb_users WHERE id = '$id_autor_alta'");
-$script_nome_autor_alta->execute();
-$nome_autor_alta = $script_nome_autor_alta->fetch(PDO::FETCH_ASSOC);
-?>
+  <!-- Notícias em Alta -->
+  <h1>Em Alta</h1>
+  <div class="card-group">
+    <?php while ($noticia_alta = $script_noticias_alta->fetch(PDO::FETCH_ASSOC)) { 
+      $id_autor_alta = $noticia_alta['id_autor'];
+      $script_nome_autor_alta = $conn->prepare("SELECT * FROM tb_users WHERE id = '$id_autor_alta'");
+      $script_nome_autor_alta->execute();
+      $nome_autor_alta = $script_nome_autor_alta->fetch(PDO::FETCH_ASSOC);
+    ?>
 		<div class="card" onclick="window.location.href = 'view.php?id=<?= $noticia_alta['id'];?>'">
-			<img class="img-thumbnail" width="150" height="200" src="img/<?php echo $noticia_alta['img_1']; ?>">
+			<img src="img/<?php echo $noticia_alta['img_1']; ?>">
       <div class="card-body">	
 			  <h5><?php echo $noticia_alta['nm_noticia']; ?></h5>
         <?php echo $noticia_alta['ds_noticia'];?>
@@ -147,20 +147,20 @@ $nome_autor_alta = $script_nome_autor_alta->fetch(PDO::FETCH_ASSOC);
 			  <p>Autor: <?php echo $nome_autor_alta['nm_user']; ?></p>
       </div>
   	</div>
-<?php }}?>
-</div>
+    <?php }}?>
+  </div>
 
-<!-- Notícias Populares -->
-<h1>Mais Populares</h1>
-<div class="card-group">
-<?php while ($noticia_populares = $script_noticias_populares->fetch(PDO::FETCH_ASSOC)) { 
-$id_autor_popular = $noticia_populares['id_autor'];
-$script_nome_autor_popular = $conn->prepare("SELECT * FROM tb_users WHERE id = '$id_autor_popular'");
-$script_nome_autor_popular->execute();
-$nome_autor_popular = $script_nome_autor_popular->fetch(PDO::FETCH_ASSOC);
-?>
+  <!-- Notícias Populares -->
+  <h1>Mais Populares</h1>
+  <div class="card-group">
+    <?php while ($noticia_populares = $script_noticias_populares->fetch(PDO::FETCH_ASSOC)) { 
+      $id_autor_popular = $noticia_populares['id_autor'];
+      $script_nome_autor_popular = $conn->prepare("SELECT * FROM tb_users WHERE id = '$id_autor_popular'");
+      $script_nome_autor_popular->execute();
+      $nome_autor_popular = $script_nome_autor_popular->fetch(PDO::FETCH_ASSOC);
+    ?>
 		<div class="card" onclick="window.location.href = 'view.php?id=<?= $noticia_populares['id']?>'">
-			<img class="img-thumbnail" width="150" height="200" src="img/<?php echo $noticia_populares['img_1']; ?>">
+			<img src="img/<?php echo $noticia_populares['img_1']; ?>">
       <div class="card-body">	
 			  <h5><?php echo $noticia_populares['nm_noticia']; ?></h5>
         <?php echo $noticia_populares['ds_noticia'];?>
@@ -169,21 +169,8 @@ $nome_autor_popular = $script_nome_autor_popular->fetch(PDO::FETCH_ASSOC);
 			  <p>Autor: <?php echo $nome_autor_popular['nm_user']; ?></p>
       </div>
   	</div>
-<?php }?>
-</div>
-
-<!-- While Comentarios -->
-<h1>Últimos comentarios</h1>
-<?php  
-while ($comentario = $script_comentarios->fetch(PDO::FETCH_ASSOC)) {
-	$id_user = $comentario['id_user'];
-	$script_users = $conn->prepare("SELECT * FROM tb_users WHERE id ='$id_user'");
-	$script_users->execute();	
-	$user = $script_users->fetch(PDO::FETCH_ASSOC);
-	?>
-	<b><?php echo $user['nm_user'];?></b><p><i><?php echo $comentario['comentario']?></i></p><p><?php echo $comentario['data'];?></p>
-<?php }?>
-</div>
+    <?php }?>
+  </div>
 
 <!-- Footer -->
 <?php include('footer.php');?>

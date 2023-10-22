@@ -13,35 +13,57 @@ if (isset($_SESSION['id'])) {
 </head>
 	<script src="js/jquery-3.6.0.min.js"></script>
 <body>
-
+	<?php include('nav.php');?>
 	<!-- Tag "span" usada para retorno do ajax -->
 	<span></span><br>
 
-<input type="text" id="user" placeholder="Nome de usuário"><br>
-<input type="text" id="login" placeholder="E-mail"><br>
-<input type="text" id="password" placeholder="Senha"><br>
-<button id="cadastrar">Cadastrar</button><br>
-<a href="login.php">Login</a>
+	<div class="container-fluid text-center">
+		<h2>Informe seus dados e faça seu login!</h2>
+		<form id="form_cadastro" method="post" enctype="multipart/form-data">		
+		<div class="form-floating mb-3">
+			<input class="form-control" type="text" name="user" id="user" placeholder="Ex.: Maria Andrade">
+			<label for="user">Digite seu Nome:</label>
+		</div>
+		<div class="form-floating mb-3">
+			<input class="form-control" type="text" name="login" id="login" placeholder="exemplo@gmail.com">
+			<label for="login">Digite seu e-mail:</label>
+		</div>
+		<div class="form-floating mb-3">
+			<input class="form-control" type="text" name="password" id="password" placeholder="Senha123">
+			<label for="password">Digite sua senha:</label>
+		</div>
+		<div>
+			<input type="file" name="ds_img">
+		</div>
+		<button class="btn btn-primary m-3" type="submit" id="cadastrar">Cadastrar</button>
+		<h6>Se já possui login, entre <a href="login.php">aqui!</a></h6>
+		</form>
+	</div>
+
 </body>
 
 	<script type="text/javascript">
-		$(document).ready(function(){
-			$("#cadastrar").click(function(){
-  			$.ajax({
-  				url: "php/script_cadastro.php",
-  				type: "POST",
-  				data: "login="+$("#login").val()+"&password="+$("#password").val()+"&user="+$("#user").val(),
-  				dataType: "html"
-  			}).done(function(resposta) {
-	    $("span").html(resposta);
+	$(document).ready(function() {
+  	$('#form_cadastro').submit(function(event) {
+    	event.preventDefault(); // Impede o envio padrão do formulário
+    	var form_data = new FormData(this);
 
-		}).fail(function(jqXHR, textStatus ) {
-	    console.log("Request failed: " + textStatus);
+  	$.ajax({
+    	url: 'php/script_cadastro.php', // Arquivo PHP para processar os dados
+    	type: 'POST',
+    	data: form_data, 
+    	contentType: false,
+    	processData: false,
+    	success: function(response) {
+			$("span").html(response); // Exibe a resposta do servidor
+    
+      	},
+    	error: function(xhr, status, error) {
+    	console.log(xhr.responseText);
 
-		}).always(function() {
-	    console.log("completou");
-		});
+      	}
+    	});
   	});
-});
+	});
 	</script>
 </html>
