@@ -1,167 +1,124 @@
-#perfil{
-	width: 80px;
-	height: 80px;
-	border-radius: 50%;
+/* CSS NAV */
+@media only screen and (max-height:10rem){
+	nav{
+		height: 8rem;
+	}
+}
+#logo{
+	height: 100px;
+	width: auto;
+	margin: 2px;
+}
+.btn-5 {
+  width: 100px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  color: #1173cd;
+  background: transparent;
+}
+.btn-5:hover {
+  color: #ffffff;
+  background: transparent;
+  box-shadow:none;
+  border-bottom: 1px solid;
+  border-radius: 0;
+  transition: 200ms ease-out;
+}
+.input-search{
+	min-width: 100px;
+}
+.btn-search{
+	max-width: 50px;
 }
 
-/* CSS PÁGINA PERFIL */
-#group-perfil{
-	width: 100%;
-	background: #1173CD;
-	padding: 10px;
+
+/* CSS INDEX */
+.card-group{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+}
+.card{
+	width: 350px;
+	max-width: 100%;
+    height: 400px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.container-fluid{
+    max-width: 800px;          
+    width: 100%;            
+    height: auto;  
+}
+img{
+	height: 200px;
+	min-height: 150px;
+}
+@media only screen and (max-width:800px){
+	img{
+		width: 100%;
+		height: 200px;
+		object-fit: cover;
+		position: top;
+}
+}
+
+/* CSS VIEW DE NOTÍCIAS */
+#grid-noticia{
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-	grid-template-columns: 215px auto;
-
-}
-#perfil-img{
+	grid-template-columns: 800px 400px;
 	margin: 10px;
-	min-width: 80px;
-	width: 200px;
+}
+.header-noticia{
+	background-color: #ffffff;
+	padding: 10px;
+	border-radius: 10px;
+	box-shadow: 0px 0px 5px 0.5px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#img-noticia{
+	height: 500px;
+	width: 100%;
+}
+@media only screen and (max-height:700px){
+	#img-noticia{
+		height: 500px;
+		width: 100%;
+	}
+}
+#div-autor{
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	border-radius: 10px;
+	height: 100px;
+	padding: 10px;
+}
+#img-autor{
+	width: 150px;
+	height: auto;
+}
+
+/* CSS PERFIL USER/ADM */
+#painel-perfil{
+	background: silver;
+	padding: 10px;
+	border-radius: 10px;
+	margin-top: 10px;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-columns: 210px auto;
+}
+#img-name{
+	text-align: center;
+}
+#img-name > img{
+	border-radius: 10px;
+}
+#banner{
 	height: 200px;
 	border-radius: 10px;
-	display: grid;
-	grid-template-rows: 200px 50px;
 }
-#login-pass{
-	display: grid;
-	grid-template-rows: 25px;
-	gap: 5px;
-	padding: 10px;
-}
-
-/*CSS DO INDEX */
-.card-group{
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-	grid-gap: 10px;
-	justify-content: center;
-	overflow: hidden;
-	transition: transform 0.3s ease;
-}
-.card{	
-	height: 350px;
-	width: 100%;
-	border: 1px solid silver;
-	align-items: center;
-}
-.pesq{
+#edit-user{
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-	grid-template-columns: 200px 90px;
-	gap: 5px ;
 }
-#img-card{
-	width: 250px;
-	height: 200px;
-	border-radius: 5%;
-	object-fit: cover;
-}
-@media only screen and (max-width: 250px) {
-  #img-card {
-    width: 100%;
-  }
-}
-
-
-li{
-	list-style: none;
-}
-
-li > img{
-	width: 5rem;
-	padding: 5px;
-}
-
-/* CSS DO CADASTRAR NOTÍCIA */
-#cadastro{
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	gap: 1em;
-}
-.group1{
-	display: grid;
-	grid-template-rows: 50px 300px;
-	gap: 1em;
-}
-.group{
-	display: grid;
-	grid-template-rows: 50px 200px;
-	gap: 1em;
-}
-.group2{
-	display: grid;
-	grid-template-rows: 50px 50px;
-	gap: 1em;
-}
-#imge{
-	height: 200px;
-	width: 200px;
-	border-radius: 5%;
-	object-fit: cover;
-}
-
-/* CSS UPDATE NOTÍCIA */
-#form-up{
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	gap: 5px;
-	padding: 5px;
-}
-.group-up{
-	display: grid;
-	grid-template-rows: 50px 300px;
-	gap: 5px;
-}
-.group-up2{
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	grid-template-columns: 300px 200px;
-	gap: 5px;
-	align-items: center;
-}
-
-/* CSS DA PÁGINA DE VISUALIZAÇÃO DE NOTÍCIA */
-#view-noticia{
-	padding: 10px;
-		background: #DCD8D8;
-	}
-#view-img{
-	height: 400px;
-	width: 380px;
-	border-radius: 5%;
-	object-fit: cover;
-}
-@media only screen and (max-width: 380px) {
-  #view-img {
-    width: 100%;
-  }
-}
-
-
-#info{
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	gap: 1em;
-}
-footer{
-	margin-top: auto;
-}
-body {
-    display: flex;
-    flex-direction: column;
-	margin: 0 auto;
-	max-width: auto 100%;
-}
-html{
-    min-height: 100%;
-}
-div.col-4{
-	display: grid;
-	grid-template-rows: 50px 20px;
-}
-div.col-6{
-	display: grid;
-	grid-template-rows: 50px 200px;
-}
-
