@@ -118,6 +118,17 @@ ENGINE = InnoDB
 AUTO_INCREMENT = 4
 DEFAULT CHARACTER SET = latin1;
 
+CREATE TABLE `jtec`.`tb_placar` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nm_time_1` VARCHAR(45) NULL,
+  `gols_1` VARCHAR(45) NULL,
+  `nm_time_2` VARCHAR(45) NULL,
+  `gols_2` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf32;
+
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
@@ -132,5 +143,3 @@ INSERT INTO `jtec`.`tb_categoria` (`id`, `nm_categoria`) VALUES ('2', 'Categoria
 INSERT INTO `jtec`.`tb_nivel` (`id`, `nm_nivel`) VALUES ('1', 'Admin');
 
 INSERT INTO `jtec`.`tb_noticia` (`id`, `nm_noticia`, `ds_noticia`, `img_1`, `nr_curtidas`, `id_categoria`, `id_autor`, `views`) VALUES ('1', 'Titulo 1', 'Descircao', 'etec.jpg', '0', '1', '1', '0');
-
-
