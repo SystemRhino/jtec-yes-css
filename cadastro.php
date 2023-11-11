@@ -17,9 +17,10 @@ if (isset($_SESSION['id'])) {
 	<!-- Tag "span" usada para retorno do ajax -->
 	<span></span><br>
 
-	<div class="container-fluid text-center">
-		<h2>Informe seus dados e faça seu login!</h2>
-		<form id="form_cadastro" method="post" enctype="multipart/form-data">		
+	<div class="container form shadow col-8 p-4 text-center">
+		<h2>Informe seus dados e faça seu cadastro!</h2>
+		<form id="form_cadastro" method="post" enctype="multipart/form-data">
+			<div class="dados p-3">	
 		<div class="form-floating mb-3">
 			<input class="form-control" type="text" name="user" id="user" placeholder="Ex.: Maria Andrade">
 			<label for="user">Digite seu Nome:</label>
@@ -28,19 +29,34 @@ if (isset($_SESSION['id'])) {
 			<input class="form-control" type="text" name="login" id="login" placeholder="exemplo@gmail.com">
 			<label for="login">Digite seu e-mail:</label>
 		</div>
-		<div class="form-floating mb-3">
+		<div class="form-floating">
 			<input class="form-control" type="text" name="password" id="password" placeholder="Senha123">
 			<label for="password">Digite sua senha:</label>
 		</div>
-		<div>
-			<input type="file" name="ds_img">
+			</div>
+		<div class="p-3 col-8">
+			<div>
+			<img id="img-1" src="img/user.png">
+			<input type="file" class="form-control" id="img1" name="ds_img">
+			</div>
 		</div>
-		<button class="btn btn-primary m-3" type="submit" id="cadastrar">Cadastrar</button>
-		<h6>Se já possui login, entre <a href="login.php">aqui!</a></h6>
+		<div>
+			<button class="btn btn-primary" type="submit" id="cadastrar">Cadastrar</button>
+			<h6>Se já possui login, entre <a href="login.php">aqui!</a></h6>
+		</div>
 		</form>
 	</div>
 
 </body>
+  	<!-- Exibir a img para visualizá-la -->
+		<script>
+			const image = document.querySelector("#img-1"),
+			input = document.querySelector("#img1");
+
+			input.addEventListener("change", () => {
+			image.src = URL.createObjectURL(input.files[0]);
+			});
+		</script>
 
 	<script type="text/javascript">
 	$(document).ready(function() {

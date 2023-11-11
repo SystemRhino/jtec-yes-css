@@ -16,7 +16,7 @@ if (isset($_SESSION['id'])) {
 	<!-- Tag "span" usada para retorno do ajax -->
 	<span></span><br>
 
-	<div class="container-fluid text-center">
+	<div class="container-fluid shadow form col-6 p-4 text-center">
 		<h2>Informe seus dados e faça seu login!</h2>
 		<div class="form-floating mb-3 mt-3">
 			<input class="form-control" type="email" id="login" placeholder="exemplo@gmail.com">

@@ -2,6 +2,11 @@
 require'php/conecta.php';
 session_start();
 
+//Consulta Placar
+$script_placar = $conn->prepare("SELECT * FROM tb_placar");
+$script_placar->execute();
+$placar = $script_placar->fetch(PDO::FETCH_ASSOC);
+
 //Consulta Notícias em Alta
 $script_noticias_alta = $conn->prepare("SELECT * FROM tb_noticia  ORDER BY views DESC");
 $script_noticias_alta->execute();
@@ -31,6 +36,7 @@ $script_noticias = $conn->prepare("SELECT * FROM tb_noticia ORDER BY id DESC LIM
 $script_noticias->execute();
 $text = "Últimas Notícias";
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -45,15 +51,17 @@ $text = "Últimas Notícias";
 </head>
 <body>
 <!-- Nav -->
-<?php include('nav.php');?>
+<?php include('nav.php'); ?>
 
 <!-- While categoria -->
+  <div class="categ shadow">
 <?php  while ($categoria = $script_categoria->fetch(PDO::FETCH_ASSOC)) { ?>
-	<button class="btn btn-outline-primary m-2" onclick="window.location.href = 'index.php?categoria=<?= $categoria['id']?>'"><?php echo $categoria['nm_categoria']; ?></button>
+	<button class="btn btn-outline-primary m-2 shadow" onclick="window.location.href = 'index.php?categoria=<?= $categoria['id']?>'"><?php echo $categoria['nm_categoria']; ?></button>
 <?php } ?>
+ </div>
 
 <!-- Carrossel -->
-<div class="container-fluid">
+  <div class="container-fluid carrossel col-5 mt-3">
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
               <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -62,25 +70,10 @@ $text = "Últimas Notícias";
             </div>
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img id="img-carousel" src="OIP.jpg" class="img-fluid" alt="...">
+                <img id="img-carousel" src="img/<?php echo $noticia['img_1'];?>" class="img-fluid" alt="...">
                 <div class="carousel-caption d-none d-md-block">
-                  <h5>First slide label</h5>
-                  <p>Some representative placeholder content for the first slide.</p>
                 </div>
               </div>
-              <div class="carousel-item">
-                <img id="img-carousel" src="OIP.jpg" class="img-fluid" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>Second slide label</h5>
-                  <p>Some representative placeholder content for the second slide.</p>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <img id="img-carousel" src="OIP.jpg" class="img-fluid" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>Third slide label</h5>
-                  <p>Some representative placeholder content for the third slide.</p>
-                </div>
               </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
@@ -93,6 +86,13 @@ $text = "Últimas Notícias";
             </button>
           </div>
     </div>
+
+  <!-- Placar -->
+  <?php if($script_placar->rowCount()>0){?>
+<div>
+<?php echo $placar['nm_time_1']." ".$placar['gols_1'];?> <b>X</b> <?php echo $placar['nm_time_2']." ".$placar['gols_2'];?>
+</div>
+<?php }?>
 
   <!-- While Últimas Noticias -->
   <div class="container m-5">
@@ -109,7 +109,7 @@ $text = "Últimas Notícias";
       $nome_autor = $script_nome_autor->fetch(PDO::FETCH_ASSOC);
     ?>
 		<div class="card" onclick="window.location.href = 'view.php?id=<?= $noticia['id'];?>'">
-			<img src="img/<?php echo $noticia['img_1']; ?>">	
+			<img class="img-card" src="img/<?php echo $noticia['img_1']; ?>">	
       <div class="card-body">
 			  <h5><?php echo $noticia['nm_noticia'];?></h5>
         <?php echo $noticia['ds_noticia'];?>
@@ -138,7 +138,7 @@ $text = "Últimas Notícias";
       $nome_autor_alta = $script_nome_autor_alta->fetch(PDO::FETCH_ASSOC);
     ?>
 		<div class="card" onclick="window.location.href = 'view.php?id=<?= $noticia_alta['id'];?>'">
-			<img src="img/<?php echo $noticia_alta['img_1']; ?>">
+			<img class="img-card" src="img/<?php echo $noticia_alta['img_1']; ?>">
       <div class="card-body">	
 			  <h5><?php echo $noticia_alta['nm_noticia']; ?></h5>
         <?php echo $noticia_alta['ds_noticia'];?>
@@ -149,7 +149,7 @@ $text = "Últimas Notícias";
   	</div>
     <?php }}?>
   </div>
-
+ 
   <!-- Notícias Populares -->
   <h1>Mais Populares</h1>
   <div class="card-group">
@@ -160,7 +160,7 @@ $text = "Últimas Notícias";
       $nome_autor_popular = $script_nome_autor_popular->fetch(PDO::FETCH_ASSOC);
     ?>
 		<div class="card" onclick="window.location.href = 'view.php?id=<?= $noticia_populares['id']?>'">
-			<img src="img/<?php echo $noticia_populares['img_1']; ?>">
+			<img class="img-card" src="img/<?php echo $noticia_populares['img_1']; ?>">
       <div class="card-body">	
 			  <h5><?php echo $noticia_populares['nm_noticia']; ?></h5>
         <?php echo $noticia_populares['ds_noticia'];?>
@@ -171,6 +171,9 @@ $text = "Últimas Notícias";
   	</div>
     <?php }?>
   </div>
+</div>
+<!-- Previsão do Tempo -->
+  <div id="ww_65a86bcfdb929" v='1.3' loc='auto' a='{"t":"ticker","lang":"pt","sl_lpl":1,"ids":[],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722"}'>Mais previsões: <a href="https://oneweather.org/el/ioannina/" id="ww_65a86bcfdb929_u" target="_blank">Kαιροσ Ιωάννινα</a></div><script async src="https://app2.weatherwidget.org/js/?id=ww_65a86bcfdb929"></script>
 
 <!-- Footer -->
 <?php include('footer.php');?>

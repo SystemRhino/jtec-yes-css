@@ -81,23 +81,48 @@ Um dia percebemos como aquele amigo faz falta, mas ai já é tarde demais...
 Enfim...
 Um dia descobrimos que apesar de viver quase um século esse tempo todo não é suficiente para realizarmos todos os nossos sonhos, para beijarmos todas as bocas que nos atraem, para dizer o que tem de ser dito...
 O jeito é: ou nos conformamos com a falta de algumas coisas na nossa vida ou lutamos para realizar todas as nossas loucuras...</p>
-  <i><?php echo $noticia['data_post']; ?></i>
-	<p><?php echo $noticia['nr_curtidas']; ?></p>
-</div>
-
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-end">
+      <i class="col btn">Data de publicação: <?php echo $noticia['data_post']; ?></i>
+      <i class="col btn">Nº de Curtidas: <?php echo $noticia['nr_curtidas']; ?></i>
+    </div>
+        <button class="btn" id="curtir"><img width="30" src="img/icons8-gosto-disso-50.png"></button>
+        <!-- Compartilhar nas redes sociais -->
+        <button class="copyTest col btn" data-bs-toggle="modal" data-bs-target="#modalCompartilhar"><img width="35" src="img/icons8-compartilhar-50.png"></button>
+          <!-- Modal -->
+          <div class="modal fade" id="modalCompartilhar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <span id="edit"></span>
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Compartilhar nas redes sociais</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" onclick="window.location.href = 'https://www.facebook.com/sharer/sharer.php?u=<?= $URL_ATUAL?>'">Facebook</button>
+                  <button type="button" class="btn btn-primary" onclick="window.location.href = 'https://www.linkedin.com/shareArticle?mini=true&url=<?= $URL_ATUAL?>'">LinkedIn</button>
+                  <button type="button" class="btn btn-primary" onclick="window.location.href = 'https://api.whatsapp.com/send?text=<?= $URL_ATUAL?>'">WhatsApp</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     <!-- Campo do autor -->
   <div>
-    <div id="div-autor" class="container shadow w-75 bg-light">
-		  <img id="img-autor" width="20" height="20" src="img/<?php echo $autor['ds_img']; ?>">
-	    <div>
-		    <b><?php echo $autor['nm_user'];?></b>
+    <div id="div-autor" class="container shadow w-50">
+		  <img id="autor" src="img/<?php echo $autor['ds_img']; ?>">
+	    <div id="autor-seguir">
+		    <h5><?php echo $autor['nm_user'];?></h5>
 	      <!-- Seguir autor -->
+        <div class="d-flex align-items-end flex-wrap align-content-end">
         <?php if ($session == true){?>
 	      <?php if ($script_seguindo_autor->rowCount()>0){ ?>
-	        <button class="btn btn-outline-danger" id="seguir">Deixar de seguir</button>
+	        <button class="btn font-btn" id="seguir"><img width="15" src="img/icons8-remover-50.png"> Deixar de seguir</button>
 	      <?php }else{ ?>
-	        <button class="btn btn-outline-success" id="seguir">Seguir</button>
+	        <button class="btn font-btn" id="seguir"><img width="15" src="img/icons8-a-seguir-32.png"> Seguir</button>
 	      <?php }} ?>
+        </div>
 	    </div>	
     </div>
     <div class="bg-light" style="height: 300px; width: auto; margin-top: 10px;">
@@ -111,44 +136,19 @@ O jeito é: ou nos conformamos com a falta de algumas coisas na nossa vida ou lu
     </div>
   </div>
 </div>
-  <div class="container">
-    <div class="row row-cols-2">
-      <div class="col">
-	      <button id="curtir">Curtir</button><br>
-      </div>
-      <div class="col">
-        <!-- Compartilhar nas redes sociais -->
-        <button class="copyTest" data-bs-toggle="modal" data-bs-target="#modalCompartilhar">Compartilhar</button>
-			    <!-- Modal -->
-			    <div class="modal fade" id="modalCompartilhar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			      <div class="modal-dialog">
-			        <div class="modal-content">
-			    	    <span id="edit"></span>
-			          <div class="modal-header">
-			            <h5 class="modal-title" id="exampleModalLabel">Compartilhar nas redes sociais</h5>
-			            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			          </div>
-			          <div class="modal-footer">
-			            <button type="button" class="btn btn-primary" onclick="window.location.href = 'https://www.facebook.com/sharer/sharer.php?u=<?= $URL_ATUAL?>'">Facebook</button>
-			            <button type="button" class="btn btn-primary" onclick="window.location.href = 'https://www.linkedin.com/shareArticle?mini=true&url=<?= $URL_ATUAL?>'">LinkedIn</button>
-			            <button type="button" class="btn btn-primary" onclick="window.location.href = 'https://api.whatsapp.com/send?text=<?= $URL_ATUAL?>'">WhatsApp</button>
-			          </div>
-			        </div>
-			      </div>
-			    </div>
-        </div>
-      </div>
-    </div>
+</div>
 
 	<!-- Noticias da mesma categoria -->
-  <div class="container text-center">
+  <div class="container m-5 text-center">
 	  <h2>Mais da categoria <?php echo $categoria['nm_categoria']; ?></h2>
 	  <div class="card-group">
       <?php while ($noticia_categoria = $script_noticias_categoria->fetch(PDO::FETCH_ASSOC)) { ?>
-		    <div class="card" onclick="window.location.href = 'view.php?id=<?= $noticia_categoria['id']?>'">
-			    <img src="img/<?php echo $noticia_categoria['img_1']; ?>">	
-			    <h5><?php echo $noticia_categoria['nm_noticia']."<br>"; ?></h5>
-          <p><?php echo $noticia_categoria['ds_noticia']."<br>"; ?></p>
+		    <div class="card-view" onclick="window.location.href = 'view.php?id=<?= $noticia_categoria['id']?>'">
+			    <img id="img-categoria" src="img/<?php echo $noticia_categoria['img_1']; ?>">
+          <div class="card-body">	
+			      <h5><?php echo $noticia_categoria['nm_noticia']."<br>"; ?></h5>
+            <p><?php echo $noticia_categoria['ds_noticia']."<br>"; ?></p>
+          </div>
   		  </div>
       <?php }?>
     </div>
@@ -157,14 +157,16 @@ O jeito é: ou nos conformamos com a falta de algumas coisas na nossa vida ou lu
 <div class="container">
   <?php if ($session == true){?>
 	  <!-- Tag "span" usada para retorno do comentario -->
-	  <span></span><br>
+	  <span></span>
 
 	  <!-- Adiconar Comentario -->
-	  <textarea class="form-control shadow w-75 p-4 mb-2 bg-white" id="comentario" placeholder="Deixe um comentario"></textarea>
-	  <button class="btn btn-outline-success" id="comentar">Comentar</button><br>
-  <?php }else{?>
-    <p>Faça login para poder comentar!</p>
-  <?php }?>
+    <div class="container mt-2">
+	    <textarea class="form-control shadow w-75 p-4 mb-2 bg-white" id="comentario" placeholder="Deixe um comentario"></textarea>
+	    <button class="btn btn-outline-success" id="comentar">Comentar</button><br>
+      <?php }else{?>
+      <p>Faça login para poder comentar!</p>
+      <?php }?>
+    </div>
 
 	  <!-- While dos comentarios -->
 	  <h2>Comentários</h1>
@@ -175,11 +177,21 @@ O jeito é: ou nos conformamos com a falta de algumas coisas na nossa vida ou lu
 	    $script_users->execute();	
 	    $user = $script_users->fetch(PDO::FETCH_ASSOC);
   ?>
-
-	  <img id="img-autor" height="50" width="50" src="img/<?php echo $user['ds_img'];?>"><b><?php echo $user['nm_user'];?></b><p><i><?php echo $comentario['comentario'];?></i></p><p><?php echo $comentario['data'];?></p>
+  <div id="coment-div" class="mt-2 bg-light w-75">
+    <div>
+	  <img id="img-autor" src="img/<?php echo $user['ds_img'];?>">
+    </div>
+    <div class="text-start">
+      <h5><?php echo $user['nm_user'];?></h5>
+      <p><i><?php echo $comentario['comentario'];?></i></p>
+      <div class="text-end" id="data"><p><?php echo $comentario['data'];?></p></div>
+    </div>
+  </div>
   <?php }?>
+
 </div>
-</body>
+
+    </body>
 
 <script src="./js/jquery-3.6.0.min.js"></script>
         <script>

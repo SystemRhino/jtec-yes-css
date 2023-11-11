@@ -32,38 +32,31 @@ $search_nm->execute();
 <body>
 <!-- Nav -->
 <?php include('nav.php');?>
-<hr>
 
 <!-- While categoria -->
+ <div class="categ shadow">
 <?php  while ($categoria = $script_categoria->fetch(PDO::FETCH_ASSOC)) { ?>
-	<button onclick="window.location.href = 'index.php?categoria=<?= $categoria['id']?>'"><?php echo $categoria['nm_categoria']; ?></button>
+	<button class="btn btn-outline-primary m-2 shadow" onclick="window.location.href = 'index.php?categoria=<?= $categoria['id']?>'"><?php echo $categoria['nm_categoria']; ?></button>
 <?php } ?>
+ </div>
 
 <!-- While Noticias -->
+  <div class="container m-5">
 <?php  if ($search_nm->rowCount()<1){ ?>
 	<h1>Nenhum resultado encontrado da pesquisa '<?php echo $_GET['data'];?>'</h1>
 <?php }else{ ?>
 	<h1>Resultado da pesquisa '<?php echo $_GET['data'];?>'</h1>
 <?php } ?>
-<?php while ($noticia = $search_nm->fetch(PDO::FETCH_ASSOC)) { ?>
-		<div onclick="window.location.href = 'view.php?id=<?= $noticia['id']?>'">
-			<img width="150" height="150" src="img/<?php echo $noticia['img_1']; ?>">	
+ <div class="card-group">
+	<?php while ($noticia = $search_nm->fetch(PDO::FETCH_ASSOC)) { ?>
+		<div class="card" onclick="window.location.href = 'view.php?id=<?= $noticia['id']?>'">
+			<img  class="img-card" src="img/<?php echo $noticia['img_1']; ?>">	
 			<p><?php echo $noticia['nm_noticia']."<br>"; ?></p>
   		</div>
-<?php }?>
+	<?php }?>
+</div>
+</div>
 
-<!-- While Comentarios -->
-<hr>
-<h1>Últimos comentarios</h1>
-<?php  
-while ($comentario = $script_comentarios->fetch(PDO::FETCH_ASSOC)) {
-	$id_user = $comentario['id_user'];
-	$script_users = $conn->prepare("SELECT * FROM tb_users WHERE id ='$id_user'");
-	$script_users->execute();	
-	$user = $script_users->fetch(PDO::FETCH_ASSOC);
-	?>
-	<b><?php echo $user['nm_user'];?></b><p><i><?php echo $comentario['comentario']?></i></p><p><?php echo $comentario['data'];?></p>
-	<hr>
-<?php }?>
+<?php include('footer.php')?>
 </body>
 </html>

@@ -7,17 +7,20 @@
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-  <footer class="container">
-    <div class="row">
-      <div class="col-6">
+  <footer class="mt-3">
+    <div class="row etec col-10">
+      <div>
       <h4>Sobre J-tec</h4>
-      <p>Wrap a pair of elements in .form-floating to enable floating labels with Bootstrap’s textual form fields. A placeholder is required on each as our method of CSS-only floating labels uses the :placeholder-shown pseudo-element. Also note that the must come first so we can utilize a sibling selector (e.g., ~).</p>
+      <p>O J-Tec é uma plataforma de notícias e informação online e off-line com uma multitude de páginas e funcionalidades, com o objetivo de se tornar possível informar toda a comunidade escolar num geral além de acabar de vez com a ânsia de alunos sobre o polêmico tema de transparência e comunicação escolar.</p>
+      </div>
+      <div>
+        <h4>E-mail Informativo</h4>
+        <p>webrain.etec@gmail.com</p>
       </div>
     </div>
-    <div class="row">
-      <div class="col-6">
+    <div class="container coment">
     <!-- While Comentarios -->
-    <h1>Últimos comentarios</h1>
+    <h1>Últimos comentários</h1>
     <?php  
       while ($comentario = $script_comentarios->fetch(PDO::FETCH_ASSOC)) {
       $id_user = $comentario['id_user'];
@@ -25,11 +28,19 @@
       $script_users->execute(); 
       $user = $script_users->fetch(PDO::FETCH_ASSOC);
     ?>
-    <b><?php echo $user['nm_user'];?></b><p><i><?php echo $comentario['comentario']?></i></p><p><?php echo $comentario['data'];?></p>
-    <?php }?>
-      </div>
-      </div>
+    <div id="coment-div-footer" class="mt-2 w-75">
+    <div>
+	  <img id="img-autor-footer" src="img/<?php echo $user['ds_img'];?>">
     </div>
+    <div class="text-start-footer">
+      <h6><?php echo $user['nm_user'];?></h6>
+      <p><i><?php echo $comentario['comentario'];?></i></p>
+
+      <div id="data"><p><?php echo $comentario['data'];?></p></div>
+    </div>
+  </div>
+  <?php }?>
+</div>
   </footer>
 </body>
 </html>
