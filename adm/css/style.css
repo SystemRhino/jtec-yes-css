@@ -1,0 +1,70 @@
+/* CSS NAV */
+@media only screen and (max-height:10rem){
+    nav{
+        height: 8rem;
+    }
+}
+#logo{
+	height: 90px;
+	width: auto;
+}
+.btn-5 {
+  width: 100px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  color: #1173cd;
+  background: transparent;
+}
+.btn-5:hover {
+  color: #ffffff;
+  background: transparent;
+  box-shadow:none;
+  border-bottom: 1px solid;
+  border-radius: 0;
+  transition: 200ms ease-out;
+}
+.input-search{
+	min-width: 100px;
+	border: none;
+	border-bottom: 1px solid white;
+	border-radius: 0;
+	background: transparent;
+	color: white;
+}
+.input-search:focus{
+	box-shadow: 0 0 0 0;
+	outline: 0;
+	background: transparent;
+	color: white;
+}
+/* PAG NOTÍCIA */
+#form_noticia{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+#ds{
+    height: 300px;
+}
+#enviar{
+    width: 100px;
+    border: none;
+    background: silver;
+    transition: 1s all ease-out;
+    border-radius: 10px;
+}
+#enviar:hover{
+    background-color: rgb(32, 230, 220);
+}
+.img{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+#img-1{
+    width: 200px;
+}
+#img-2{
+    width: 200px;
+}
