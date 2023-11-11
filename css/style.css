@@ -1,18 +1,15 @@
 /* CSS NAV */
 @media only screen and (max-height:10rem){
-	nav{
-		height: 8rem;
-	}
+    nav{
+        height: 8rem;
+    }
 }
 #logo{
-	height: 100px;
+	height: 90px;
 	width: auto;
-	margin: 2px;
 }
 .btn-5 {
-  width: 100px;
-  height: 40px;
-  padding: 0;
+  width: 90px;
   border: none;
   color: #1173cd;
   background: transparent;
@@ -27,17 +24,30 @@
 }
 .input-search{
 	min-width: 100px;
+	border: none;
+	border-bottom: 1px solid white;
+	border-radius: 0;
+	background: transparent;
+	color: white;
 }
-.btn-search{
-	max-width: 50px;
+.input-search:focus{
+	box-shadow: 0 0 0 0;
+	outline: 0;
+	background: transparent;
+	color: white;
 }
 
 
 /* CSS INDEX */
+.banner{
+	width: 100%;
+	height: 400px;
+}
 .card-group{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 15px;
+	overflow-y: hidden;
 }
 .card{
 	width: 350px;
@@ -45,17 +55,26 @@
     height: 400px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-.container-fluid{
-    max-width: 800px;          
-    width: 100%;            
-    height: auto;  
+@media only screen and (max-width: 600px){
+.carrossel{
+	padding: 10px;
+	height: auto;
+	width: 500px;
+	justify-content: center;
 }
-img{
+}
+@media only screen and(max-width: 600px){
+	#img-carousel{
+		width: 100%;
+		height: 500px;
+	}
+}
+.img-card{
 	height: 200px;
 	min-height: 150px;
 }
 @media only screen and (max-width:800px){
-	img{
+	.img-card{
 		width: 100%;
 		height: 200px;
 		object-fit: cover;
@@ -63,11 +82,31 @@ img{
 }
 }
 
+.categ{
+	width: 100%;
+	overflow-x: scroll;
+	 overflow-y: hidden;
+	 white-space: nowrap;
+	}
+.categ::-webkit-scrollbar {
+  height: 5px; 
+}
+
+.categ::-webkit-scrollbar-track {
+  background: transparent; 
+}
+
+.categ::-webkit-scrollbar-thumb {
+  background: #1173cd; 
+  border-radius: 10px; 
+  border: none;  
+}
+
 /* CSS VIEW DE NOTÍCIAS */
 #grid-noticia{
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-	grid-template-columns: 800px 400px;
+	grid-template-columns: 800px 500px;
 	margin: 10px;
 }
 .header-noticia{
@@ -88,23 +127,79 @@ img{
 }
 #div-autor{
 	display: grid;
+	background: #dcd8d8;
 	grid-template-columns: repeat(2, 1fr);
 	border-radius: 10px;
-	height: 100px;
+	height: 110px;
 	padding: 10px;
 }
-#img-autor{
-	width: 150px;
+.font-btn{
+	border: none;
+	font-size: 13px;
+}
+.div-card{
+	max-height: 500px;
 	height: auto;
+	width: 100%;
+	box-shadow: 4px 7px 38px 4px rgba(0,0,0,0.1);
+	overflow-x: scroll;
+	overflow-y: hidden;
+}
+.card-view{
+	width: 100%;
+    height: 400px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#img-categoria{
+	width: 100%;
+	height: 200px;
+	min-height: 150px;
+}
+#coment-div{
+	border: none;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-columns: 150px 75%;
+    font-size: 16px; 
+	padding: 10px;
+box-shadow: inset 0px 4px 63px -15px rgba(0,0,0,0.1);	background: rgb(255, 255, 255);
+	border-radius: 20px;
+}
+.text-start{
+	word-wrap: break-word;
+	white-space: nowrap;
+}
+#autor{
+	width: 70px;
+	height: auto;
+	border-radius: 10px;
+	max-height: 90px;
+}
+#img-autor{
+	width: 90px;
+	height: auto;
+	border-radius: 10px;
+}
+
+
+/* CSS CADASTRO/LOGIN */
+.form{
+	border-radius: 10px;
+}
+#form_cadastro{
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 10px;
+}
+#img-1{
+	width: 200px;
 }
 
 /* CSS PERFIL USER/ADM */
 #painel-perfil{
-	background: silver;
-	padding: 10px;
-	border-radius: 10px;
-	margin-top: 10px;
+	box-shadow: 3px 39px 93px -4px rgba(0,0,0,0.1);
 	display: grid;
+	border-radius: 20px;
 	grid-template-columns: repeat(2, 1fr);
 	grid-template-columns: 210px auto;
 }
@@ -118,7 +213,106 @@ img{
 	height: 200px;
 	border-radius: 10px;
 }
+#cadastro-noticia{
+	border-bottom-right-radius: 20px;
+	border-bottom-left-radius: 20px;
+}
+.text-center{
+	border-bottom-right-radius: 20px;
+	border-bottom-left-radius: 20px;
+}
 #edit-user{
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
+}
+#form_noticia{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+	border: none;
+}
+
+#ds{
+    height: 300px;
+}
+#enviar{
+	color: gray;
+    width: 100px;
+    border: none;
+    background: rgba(255, 255, 255, 0);
+    transition: 1s all ease-out;
+}
+#enviar:hover{
+	color: white;
+    background-color: #1173cd;
+}
+.img{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+@media only screen and(max-width: 400px) {
+	#img-1{
+		display: flex;
+		width: 300px;
+		height: 300px;
+		min-height: 100px;
+		
+	}
+}
+#img-2{
+    width: 200px;
+}
+/* FOOTER */
+footer{
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	height: 300px;
+
+}
+.etec{
+	background: #1d1d16;
+	color: white;
+	border-top-right-radius: 20px;
+	border-bottom-right-radius: 20px;
+}
+.coment{
+	padding: 20px;
+	max-height: 500px;
+	height: auto;
+	box-shadow: 4px 7px 38px 4px rgba(0,0,0,0.1);
+	background: rgb(255, 255, 255);
+	border-bottom-left-radius: 20px;
+	border-top-left-radius: 20px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	white-space: nowrap;
+}
+.coment::-webkit-scrollbar {
+	width: 5px; 
+  }
+  
+  .coment::-webkit-scrollbar-track {
+	background: transparent; 
+  }
+  
+  .coment::-webkit-scrollbar-thumb {
+	background: #1173cd; 
+	border-radius: 10px; 
+	border: none;  
+  }
+#coment-div-footer{
+	box-shadow: 11px 10px 10px -4px rgba(0,0,0,0.1);
+	border-radius: 10px;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-columns: 150px 600px;
+    font-size: 14px; 
+	padding: 10px;
+}
+.text-start-footer{
+	word-wrap: break-word;
+}
+#img-autor-footer{
+	width: 100px;
+	border-radius: 10px;
 }
