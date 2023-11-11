@@ -1,15 +1,17 @@
 <?php
-	require('conecta.php');
-
-	$tb = $_GET['tb'];
-	$id = $_GET['id'];
-
-	try {
-		$delete = $conn->prepare("DELETE FROM $tb WHERE id='$id'");
-		$delete->execute();
-		header(sprintf('location: %s', $_SERVER['HTTP_REFERER']));
-	} catch(PDOException $e) {
-		header('location:..\index.php');
-				}
+session_start();
+if ($_SESSION['nivel'] != 1) {
+	header('location:../');
+}else{
+		$id = $_GET['id'];
+		include('conecta.php');
+		try {
+		  $delete_noticia = $conn->prepare("DELETE FROM tb_noticia WHERE (`id` = '$id')");
+		  $delete_noticia->execute();
+		  
+		} catch(PDOException $e) {
+		    echo $e;
+		}
+	}
 
 ?>
