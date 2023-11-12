@@ -50,6 +50,14 @@ $text = "Últimas Notícias";
 	<script src="js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+<style type="text/css">
+    .desc,h5{
+    white-space: nowrap; 
+    width: 280px; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+  </style>
 <!-- Nav -->
 <?php include('nav.php'); ?>
 
@@ -91,7 +99,7 @@ $text = "Últimas Notícias";
 			<img class="img-card" src="img/<?php echo $noticia['img_1']; ?>">	
       <div class="card-body">
 			  <h5><?php echo $noticia['nm_noticia'];?></h5>
-        <?php echo $noticia['ds_noticia'];?>
+        <p class="desc"><?php echo $noticia['ds_noticia'];?></p>
       </div>
       <div class="card-footer">
 			  <p>Autor: <?php echo $nome_autor['nm_user']; ?></p>
@@ -120,7 +128,7 @@ $text = "Últimas Notícias";
 			<img class="img-card" src="img/<?php echo $noticia_alta['img_1']; ?>">
       <div class="card-body">	
 			  <h5><?php echo $noticia_alta['nm_noticia']; ?></h5>
-        <?php echo $noticia_alta['ds_noticia'];?>
+        <p class="desc"><?php echo $noticia_alta['ds_noticia'];?></p>
       </div>
       <div class="card-footer">
 			  <p>Autor: <?php echo $nome_autor_alta['nm_user']; ?></p>
@@ -142,7 +150,7 @@ $text = "Últimas Notícias";
 			<img class="img-card" src="img/<?php echo $noticia_populares['img_1']; ?>">
       <div class="card-body">	
 			  <h5><?php echo $noticia_populares['nm_noticia']; ?></h5>
-        <?php echo $noticia_populares['ds_noticia'];?>
+        <p class="desc"><?php echo $noticia_populares['ds_noticia'];?></p>
       </div>
       <div class="card-footer">
 			  <p>Autor: <?php echo $nome_autor_popular['nm_user']; ?></p>
