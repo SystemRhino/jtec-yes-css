@@ -2,7 +2,9 @@
 require('conecta.php');
 	// Verificando se os inputs estão vazios
 	if ($_POST['login'] === "" or $_POST['password'] === "" or $_POST['user'] === "") {
-		echo "Preencha todos os campos!";
+		$strong = "Preencha todos os campos!";
+		$text = "Tente Novamente.";
+		include('error.php');
 	}else{
 		// Armazenando dados em variáveis
 		$login = $_POST['login'];
@@ -15,13 +17,21 @@ require('conecta.php');
 		$valid_email_ponto = strpos( $_POST['login'], '.' );
 		$valid_user_space = strpos( $_POST['user'], ' ' );
 		if ($valid_email === false or $valid_email_ponto === false) {
-			echo 'Insira um E-mail válido!';
+			$strong = "Insira um E-mail válido!";
+			$text = "Tente Novamente.";
+			include('error.php');
 		}elseif(strlen($login) > 80){
-			echo "E-mail atingiu o limite máximo de caracteres (80)";
+			$strong = "E-mail atingiu o limite máximo de caracteres (80)";
+			$text = "Tente Novamente.";
+			include('error.php');
 		}elseif(strlen($user) > 80){
-			echo "Nome de usuario atingiu o limite máximo de caracteres (80)";
+			$strong = "Nome de usuario atingiu o limite máximo de caracteres (80)";
+			$text = "Tente Novamente.";
+			include('error.php');
 		}elseif(strlen($senha) > 20){
-			echo "Senha atingiu o limite máximo de caracteres (20)";
+			$strong = "Senha atingiu o limite máximo de caracteres (20)";
+			$text = "Tente Novamente.";
+			include('error.php');
 		}elseif($valid_user_space === false){
 			// Consultando E-mail
 		    $script_email = $conn->prepare('SELECT * FROM tb_users WHERE ds_login = :login');

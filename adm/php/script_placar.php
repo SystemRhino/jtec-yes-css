@@ -6,7 +6,9 @@ if ($_SESSION['nivel'] != 1) {
 
 	// Validação
 	if ($_POST['nm_time_1'] === "" || $_POST['nm_time_2'] === "" || $_POST['gols_1'] === "" ||  $_POST['gols_2'] === "") {
-		echo "Preencha todos os campos!";
+		$strong = "Preencha todos os campos!";
+		$text = "Tente Novamente.";
+		include('error.php');
 	}else{
 		include('conecta.php');
 		try {
@@ -17,7 +19,6 @@ if ($_SESSION['nivel'] != 1) {
 		    ':nm_time_2' => $_POST['nm_time_2'],
 		    ':gols_2' => $_POST['gols_2']
 		  ));
-		  echo "Cadastrado com sucesso!";
 		  echo "<meta HTTP-EQUIV='refresh' CONTENT='0'>";
 		} catch(PDOException $e) {
 		    echo $e;
