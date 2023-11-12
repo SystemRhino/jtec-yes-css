@@ -25,18 +25,21 @@ $dir = '/'.basename(__DIR__).'/';
         <li class="dropdown">
           <a class="dropdown-toggle btn custom-btn btn-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">Cursos</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="cursos.php?nome=adm">Administração - ETIM/M-TEC</a></li>
-            <li><a class="dropdown-item" href="cursos.php?nome=mam">Meio Ambiente - ETIM/M-TEC</a></li>
-            <li><a class="dropdown-item" href="cursos.php?nome=min">Informática - ETIM/M-TEC</a></li>
-            <li><a class="dropdown-item" href="cursos.php?nome=adm">Administração - MODULAR</a></li>
-            <li><a class="dropdown-item" href="cursos.php?nome=ds">Desenvolvimento de Sistemas - MODULAR</a></li>
-            <li><a class="dropdown-item" href="cursos.php?nome=farm">Farmácia - MODULAR</a></li>
+            <li><a class="dropdown-item" href="cursos.php?id=1">Administração - ETIM/M-TEC</a></li>
+            <li><a class="dropdown-item" href="cursos.php?id=2">Meio Ambiente - ETIM/M-TEC</a></li>
+            <li><a class="dropdown-item" href="cursos.php?id=3">Informática - ETIM/M-TEC</a></li>
+            <li><a class="dropdown-item" href="cursos.php?id=4">Administração - MODULAR</a></li>
+            <li><a class="dropdown-item" href="cursos.php?id=5">Desenvolvimento de Sistemas - MODULAR</a></li>
+            <li><a class="dropdown-item" href="cursos.php?id=6">Farmácia - MODULAR</a></li>
           </ul>
         </li>
         <li class="nav-item">
         <!-- Verificação de sessão -->
     <?php if(isset($_SESSION['id'])){?>
       <a class="btn custom-btn btn-5" href="perfil.php">Perfil</a> |
+      </li>
+      <li class="nav-item">
+        <a class="btn custom-btn btn-5" href="php/logout.php">Sair</a> 
       </li>
       <li class="nav-item">
     <?php }else{?>

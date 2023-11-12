@@ -12,7 +12,7 @@ $script_comentarios->execute();
 $script_categoria = $conn->prepare("SELECT * FROM tb_categoria");
 $script_categoria->execute();
 
-//Consulta Notícia
+//Consulta User
 $id = $_SESSION['id'];
 $script_user = $conn->prepare("SELECT * FROM tb_users WHERE id ='$id'");
 $script_user->execute();
@@ -21,6 +21,43 @@ $user = $script_user->fetch(PDO::FETCH_ASSOC);
 //Consulta Notícia
 $script_noticias = $conn->prepare("SELECT * FROM tb_noticia WHERE id_autor = '$id'");
 $script_noticias->execute();
+
+//Consulta Count Notícia
+$script_count_noticias = $conn->prepare("SELECT COUNT(*) FROM tb_noticia WHERE id_autor='$id'");
+$script_count_noticias->execute();
+$count_not = $script_count_noticias->fetch(PDO::FETCH_ASSOC);
+$n_de_noticias = $count_not['COUNT(*)'];
+
+//Consulta Count like
+$script_count_like = $conn->prepare("SELECT COUNT(*) FROM tb_noticia WHERE id_autor='$id'");
+$script_count_like->execute();
+$count_like = $script_count_like->fetch(PDO::FETCH_ASSOC);
+
+// Verificação like
+if ($count_like['COUNT(*)'] == 0) {
+  $like = '0';
+}else{
+  //Consulta Soma Like
+  $script_soma_likes = $conn->prepare("SELECT sum(nr_curtidas) FROM tb_noticia WHERE id_autor='$id'");
+  $script_soma_likes->execute();
+  $likes = $script_soma_likes->fetch(PDO::FETCH_ASSOC);
+  $like = $likes['sum(nr_curtidas)'];
+}
+
+//Consulta Count views
+$script_count_views = $conn->prepare("SELECT COUNT(*) FROM tb_noticia WHERE id_autor='$id'");
+$script_count_views->execute();
+$count_views = $script_count_views->fetch(PDO::FETCH_ASSOC);
+
+if ($count_views['COUNT(*)'] == 0) {
+  $views = '0';
+}else{
+  //Consulta Soma Views
+  $script_soma_views = $conn->prepare("SELECT sum(views) FROM tb_noticia WHERE id_autor='$id'");
+  $script_soma_views->execute();
+  $count_views = $script_soma_views->fetch(PDO::FETCH_ASSOC);
+  $views = $count_views['sum(views)'];
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -38,7 +75,7 @@ $script_noticias->execute();
 	<span></span>
 	<div id="accordion">
 	<!-- Painel do perfil de user -->
-<div id="painel-perfil" class="container">
+<div id="painel-perfil" class="container col-9">
 	<div id="img-name">
 		<img width="200" height="200" src="img/<?php echo $user['ds_img'];?>">
 		<p><?php echo $user['nm_user'];?></p>
@@ -56,11 +93,7 @@ $script_noticias->execute();
 				<button>favs</button>
 				<button class="btn" data-bs-toggle="collapse" data-bs-target="#escrever" aria-expanded="false" aria-controls="collapse"><img width="35" src="img/icons8-criar-ordem.gif"></button>
 				<button data-bs-toggle="collapse" data-bs-target="#config" class="btn"><img width="35" src="img/icons8-serviços.gif"></button>
-			</div>
-			<div class="d-flex justify-content-end">
-				<button>Estatísticas</button>
-				<button>Button</button>
-			</div>
+				<button data-bs-toggle="collapse" data-bs-target="#estatisticas" class="btn">Estatísticas</button>
 		</div>
 	</div>
 </div>
@@ -126,6 +159,24 @@ $script_noticias->execute();
 	</form>
 	</div>
 </div>
+<div class="collapse" data-bs-parent="#accordion" id="estatisticas">
+	<h2>Estatisticas</h2>
+<br>
+<div>
+  <h4>Número de noticias</h4>
+  <p><?php echo $n_de_noticias;?></p>
+</div>
+
+<div>
+  <h4>Número de avaliações</h4>
+  <p><?php echo $like;?></p>
+</div>
+
+<div>
+  <h4>Número de views</h4>
+  <p><?php echo $views;?></p>
+</div>
+</div>
 
 <!-- Notícias do user -->
 <div class="container mt-5">
@@ -156,23 +207,27 @@ $script_noticias->execute();
 	<!-- Script editar notícia -->
 	<span></span>
 	<script type="text/javascript">
-		$(document).ready(function(){
-			$("#edit_noticia_<?php echo $noticia['id']; ?>").click(function(){
-  			$.ajax({
-  				url: "php/edit_noticia.php",
-  				type: "POST",
-  				data: "nm_noticia="+$("#nm_noticia_<?php echo $noticia['id']; ?>").val()+"&ds_noticia="+$("#ds_noticia_<?php echo $noticia['id']; ?>").val()+"&categoria="+$("#option_categoria_<?php echo $noticia['id']; ?>").val()+"&id="+<?php echo $noticia['id'];?>,
-  				dataType: "html"
-  			}).done(function(resposta) {
-	    $("span").html(resposta);
+$(document).ready(function() {
+  $('#form_edit_noticia_<?php echo $noticia['id']; ?>').submit(function(event) {
+    event.preventDefault(); // Impede o envio padrão do formulário
+    var form_data = new FormData(this);
 
-		}).fail(function(jqXHR, textStatus ) {
-	    console.log("Request failed: " + textStatus);
+  $.ajax({
+    url: 'edit_noticia.php', // Arquivo PHP para processar os dados
+    type: 'POST',
+    data: form_data, 
+    contentType: false,
+    processData: false,
+    success: function(response) {
+		$("span").html(response); // Exibe a resposta do servidor
+    
+      },
+    error: function(xhr, status, error) {
+    console.log(xhr.responseText);
 
-		}).always(function() {
-	    console.log("completou");
-		});
-  	});
+      }
+    });
+  });
 });
 	</script>
 
@@ -192,6 +247,8 @@ $script_noticias->execute();
 			    <input class="form-control" type="text" id="nm_noticia_<?php echo $noticia['id']; ?>" placeholder="Titulo" value="<?php echo $noticia['nm_noticia']; ?>">
 			    <label>Descricão</label>
 				<input class="form-control" type="text" id="ds_noticia_<?php echo $noticia['id']; ?>" placeholder="Descrição" value="<?php echo $noticia['ds_noticia']; ?>">
+				<input type="file" name="ds_img"><br>
+					<input type="file" name="ds_img_2"><br>
 				<?php 
 					//Consulta Select Categoria
 					$script_categoria_select = $conn->prepare("SELECT * FROM tb_categoria");

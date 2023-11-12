@@ -41,19 +41,23 @@ $search_nm->execute();
  </div>
 
 <!-- While Noticias -->
-  <div class="container m-5">
+  <div class="container col-8 m-5">
 <?php  if ($search_nm->rowCount()<1){ ?>
-	<h1>Nenhum resultado encontrado da pesquisa '<?php echo $_GET['data'];?>'</h1>
+	<h3>Nenhum resultado encontrado da pesquisa '<?php echo $_GET['data'];?>'</h3>
+	<hr>
 <?php }else{ ?>
-	<h1>Resultado da pesquisa '<?php echo $_GET['data'];?>'</h1>
+	<h3>Resultado da pesquisa '<?php echo $_GET['data'];?>'</h3>
+	<hr>
 <?php } ?>
- <div class="card-group">
+<div class="container mx-auto">
+ <div id="noticia-search" class="card-group">
 	<?php while ($noticia = $search_nm->fetch(PDO::FETCH_ASSOC)) { ?>
 		<div class="card" onclick="window.location.href = 'view.php?id=<?= $noticia['id']?>'">
 			<img  class="img-card" src="img/<?php echo $noticia['img_1']; ?>">	
 			<p><?php echo $noticia['nm_noticia']."<br>"; ?></p>
   		</div>
 	<?php }?>
+</div>
 </div>
 </div>
 

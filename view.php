@@ -67,21 +67,9 @@ $att_views->execute();
       <h2><?php echo $noticia['nm_noticia']; ?></h2>
 	    <img id="img-noticia" src="img/<?php echo $noticia['img_1'];?>">
     </div>
-	<p><?php // echo $noticia['ds_noticia']; ?></p>
-  <p>Um dia descobrimos que beijar uma pessoa para esquecer outra é bobagem.
-Você não só não esquece a outra pessoa como pensa muito mais nela...
-Um dia nós percebemos que as mulheres têm instinto "caçador" e fazem qualquer homem sofrer...
-Um dia descobrimos que se apaixonar é inevitável...
-Um dia percebemos que as melhores provas de amor são as mais simples...
-Um dia percebemos que o comum não nos atrai...
-Um dia saberemos que ser classificado como "bonzinho" não é bom...
-Um dia perceberemos que a pessoa que nunca te liga é a que mais pensa em você...
-Um dia percebemos que somos muito importante para alguém, mas não damos valor a isso...
-Um dia percebemos como aquele amigo faz falta, mas ai já é tarde demais...
-Enfim...
-Um dia descobrimos que apesar de viver quase um século esse tempo todo não é suficiente para realizarmos todos os nossos sonhos, para beijarmos todas as bocas que nos atraem, para dizer o que tem de ser dito...
-O jeito é: ou nos conformamos com a falta de algumas coisas na nossa vida ou lutamos para realizar todas as nossas loucuras...</p>
-  <div class="container">
+  <div class="container mt-2">
+    <p><?php echo $noticia['ds_noticia']; ?></p>
+    <hr>
     <div class="d-flex flex-wrap align-items-end">
       <i class="col btn">Data de publicação: <?php echo $noticia['data_post']; ?></i>
       <i class="col btn">Nº de Curtidas: <?php echo $noticia['nr_curtidas']; ?></i>
@@ -99,9 +87,9 @@ O jeito é: ou nos conformamos com a falta de algumas coisas na nossa vida ou lu
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-primary" onclick="window.location.href = 'https://www.facebook.com/sharer/sharer.php?u=<?= $URL_ATUAL?>'">Facebook</button>
-                  <button type="button" class="btn btn-primary" onclick="window.location.href = 'https://www.linkedin.com/shareArticle?mini=true&url=<?= $URL_ATUAL?>'">LinkedIn</button>
-                  <button type="button" class="btn btn-primary" onclick="window.location.href = 'https://api.whatsapp.com/send?text=<?= $URL_ATUAL?>'">WhatsApp</button>
+                  <button type="button" class="btn" onclick="window.location.href = 'https://www.facebook.com/sharer/sharer.php?u=<?= $URL_ATUAL?>'"><img width="50" src="img/face.png"></button>
+                  <button type="button" class="btn" onclick="window.location.href = 'https://www.linkedin.com/shareArticle?mini=true&url=<?= $URL_ATUAL?>'"><img width="90" src="img/linkedin.png"></button>
+                  <button type="button" class="btn" onclick="window.location.href = 'https://api.whatsapp.com/send?text=<?= $URL_ATUAL?>'"><img width="40" src="img/zap.png"></button>
                 </div>
               </div>
             </div>
@@ -141,7 +129,7 @@ O jeito é: ou nos conformamos com a falta de algumas coisas na nossa vida ou lu
 	<!-- Noticias da mesma categoria -->
   <div class="container m-5 text-center">
 	  <h2>Mais da categoria <?php echo $categoria['nm_categoria']; ?></h2>
-	  <div class="card-group">
+	  <div id="overflow-card" class="card-group">
       <?php while ($noticia_categoria = $script_noticias_categoria->fetch(PDO::FETCH_ASSOC)) { ?>
 		    <div class="card-view" onclick="window.location.href = 'view.php?id=<?= $noticia_categoria['id']?>'">
 			    <img id="img-categoria" src="img/<?php echo $noticia_categoria['img_1']; ?>">

@@ -61,30 +61,9 @@ $text = "Últimas Notícias";
  </div>
 
 <!-- Carrossel -->
-  <div class="container-fluid carrossel col-5 mt-3">
-        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img id="img-carousel" src="img/<?php echo $noticia['img_1'];?>" class="img-fluid" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                </div>
-              </div>
-              </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
+  <div class="container-fluid carrossel mt-3">
+        <img id="img-carousel" src="OIP.jpg" class="img-fluid" alt="...">
+        <h2>Bem Vindo(a) ao Jornal da Etec!</h2>
     </div>
 
   <!-- Placar -->
@@ -97,7 +76,7 @@ $text = "Últimas Notícias";
   <!-- While Últimas Noticias -->
   <div class="container m-5">
 	 <h1><?php echo $text?></h1>
-  <div class="card-group">
+  <div id="overflow-card" class="card-group">
     <?php
       // Verificação se tem noticias
       if ($script_noticias->rowCount()>0){
@@ -126,11 +105,11 @@ $text = "Últimas Notícias";
 
       // Verificação se tem filtro
       if(!isset($_GET['categoria'])){ ?>
-  </div>
+   </div>
 
   <!-- Notícias em Alta -->
   <h1>Em Alta</h1>
-  <div class="card-group">
+  <div id="overflow-card" class="card-group">
     <?php while ($noticia_alta = $script_noticias_alta->fetch(PDO::FETCH_ASSOC)) { 
       $id_autor_alta = $noticia_alta['id_autor'];
       $script_nome_autor_alta = $conn->prepare("SELECT * FROM tb_users WHERE id = '$id_autor_alta'");
@@ -152,7 +131,7 @@ $text = "Últimas Notícias";
  
   <!-- Notícias Populares -->
   <h1>Mais Populares</h1>
-  <div class="card-group">
+  <div id="overflow-card" class="card-group">
     <?php while ($noticia_populares = $script_noticias_populares->fetch(PDO::FETCH_ASSOC)) { 
       $id_autor_popular = $noticia_populares['id_autor'];
       $script_nome_autor_popular = $conn->prepare("SELECT * FROM tb_users WHERE id = '$id_autor_popular'");

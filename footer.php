@@ -9,6 +9,7 @@
 <body>
   <footer class="mt-3">
     <div class="row etec col-10">
+      <a href="sobre-nos.php">
       <div>
       <h4>Sobre J-tec</h4>
       <p>O J-Tec é uma plataforma de notícias e informação online e off-line com uma multitude de páginas e funcionalidades, com o objetivo de se tornar possível informar toda a comunidade escolar num geral além de acabar de vez com a ânsia de alunos sobre o polêmico tema de transparência e comunicação escolar.</p>
@@ -17,6 +18,7 @@
         <h4>E-mail Informativo</h4>
         <p>webrain.etec@gmail.com</p>
       </div>
+      </a>
     </div>
     <div class="container coment">
     <!-- While Comentarios -->
