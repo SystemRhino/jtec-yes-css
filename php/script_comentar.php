@@ -2,9 +2,13 @@
 session_start();
 // Validação
 if ($_POST['comentario'] === "") {
-	echo "Seu comentário não pode estar vazio!";
+	$strong = "Seu comentário não pode estar vazio!";
+	$text = "Tente Novamente.";
+	include('error.php');
 }elseif (strlen($_POST['comentario']) > 250) {
-	echo "Número máximo de caracteres atigindo (250)";
+	$strong = "Número máximo de caracteres atigindo (250)";
+	$text = "Tente Novamente.";
+	include('error.php');
 }else{
 	$datetime = new DateTime(null, new DateTimeZone('America/Sao_Paulo'));
 	include('conecta.php');

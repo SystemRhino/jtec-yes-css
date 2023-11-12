@@ -38,17 +38,23 @@ if($_POST['nm_user'] !== "" or $_POST['ds_login'] !== ""){
 						$att_user->execute();
 						echo "<meta HTTP-EQUIV='refresh' CONTENT='0'>";
 					}else{
-						echo 'erro';
+						$strong = "Erro";
+						$text = "Tente Novamente.";
+						include('error.php');
 					}
 				} catch(PDOException $e) {
 					echo $e;
 				}
 			}else{
-				echo 'Envie somente arquivos JPG, JPEG ou PNG!';
+			$strong = "Envie somente arquivos JPG, JPEG ou PNG!";
+			$text = "Tente Novamente.";
+			include('error.php');
 			}
 	}
 }else{
-	echo 'Não deixe campos vazios!';
+	$strong = "Não deixe campos vazios!";
+	$text = "Tente Novamente.";
+	include('error.php');
 }
 
 ?>

@@ -6,7 +6,6 @@
 	$nm = $_POST['nm'];
 	$imagem = $_FILES["imagem"];
 	$ext = substr($imagem['name'], -4);
-	echo $ext;
 
     $stmt = $conn->prepare('SELECT * FROM tb_users WHERE ds_login = :login');
     $stmt->bindValue("login", $login);
@@ -40,10 +39,14 @@
 		header('location:perfil.php');
 			}
   	}else {
-    	echo"Você não realizou o upload de forma satisfatória.";
+  		$strong = "Você não realizou o upload de forma satisfatória.";
+		$text = "Tente Novamente.";
+		include('error.php');
   	}
 		}else{
-  		echo 'Envie somente arquivos JPG, JPEG ou PNG!';
+  		$strong = "'Envie somente arquivos JPG, JPEG ou PNG!";
+		$text = "Tente Novamente.";
+		include('error.php');
 				}
 		}
 ?>

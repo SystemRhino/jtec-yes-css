@@ -23,7 +23,10 @@ session_start();
 		));
 		}
   	}else {
-    	echo"Você não realizou o upload de forma satisfatória.";}
+			$strong = "Você não realizou o upload de forma satisfatória.";
+			$text = "Tente Novamente.";
+			include('error.php');
+    }
     }
 	}catch (Exception $e){
 		echo "Error: ".$e->getMessage();

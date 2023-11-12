@@ -6,9 +6,13 @@
 	$senha = $_POST['password'];
 
 		if(strlen($login) > 80){
-			echo "E-mail atingiu o limite máximo de caracteres (80)";
+			$strong = "E-mail atingiu o limite máximo de caracteres (80)";
+			$text = "Tente Novamente.";
+			include('error.php');
 		}elseif(strlen($senha) > 20){
-			echo "Senha atingiu o limite máximo de caracteres (20)";
+			$strong = "Senha atingiu o limite máximo de caracteres (20)";
+			$text = "Tente Novamente.";
+			include('error.php');
 		}else{
 	// Consultando login e senha
 	$stmt = $conn->prepare('SELECT * FROM tb_users WHERE ds_login = :login and ds_senha = :senha');
@@ -22,7 +26,9 @@
 			$_SESSION['nivel'] = $dado['id_nivel'];
 			echo "<meta HTTP-EQUIV='refresh' CONTENT='0'>";
 		}else{
-			echo "Usuario ou senha incorretos!";
+			$strong = "Usuário ou senha incorretos!";
+			$text = "Tente Novamente.";
+			include('error.php');
 		}
 }
 ?>
