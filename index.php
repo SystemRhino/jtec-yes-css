@@ -57,7 +57,17 @@ $text = "Últimas Notícias";
     overflow: hidden;
     text-overflow: ellipsis; 
 }
-  </style>
+
+#placar{
+  height: 130px;
+  width: 300px;
+  border-radius: 20px 20px 20px 20px;
+-webkit-border-radius: 20px 20px 20px 20px;
+-moz-border-radius: 20px 20px 20px 20px;
+box-shadow: 0px 0px 152px 1px rgba(0,0,0,0.4);
+-webkit-box-shadow: 0px 0px 152px 1px rgba(0,0,0,0.4);
+-moz-box-shadow: 0px 0px 152px 1px rgba(0,0,0,0.4);
+</style>
 <!-- Nav -->
 <?php include('nav.php'); ?>
 
@@ -66,19 +76,14 @@ $text = "Últimas Notícias";
 <?php  while ($categoria = $script_categoria->fetch(PDO::FETCH_ASSOC)) { ?>
 	<button class="btn btn-outline-primary m-2 shadow" onclick="window.location.href = 'index.php?categoria=<?= $categoria['id']?>'"><?php echo $categoria['nm_categoria']; ?></button>
 <?php } ?>
- </div>
-
-<!-- Carrossel -->
-  <div class="container-fluid carrossel mt-3">
-        <img id="img-carousel" src="OIP.jpg" class="img-fluid" alt="...">
-        <h2>Bem Vindo(a) ao Jornal da Etec!</h2>
-    </div>
-
+ </div> 
+ <br><br>
   <!-- Placar -->
   <?php if($script_placar->rowCount()>0){?>
-<div>
-<?php echo $placar['nm_time_1']." ".$placar['gols_1'];?> <b>X</b> <?php echo $placar['nm_time_2']." ".$placar['gols_2'];?>
+<center><div id="placar">
+<h2><?php echo $placar['nm_time_1']." ".$placar['gols_1'];?> <br><b>X</b><br> <?php echo $placar['nm_time_2']." ".$placar['gols_2'];?></h2>
 </div>
+</center>
 <?php }?>
 
   <!-- While Últimas Noticias -->
