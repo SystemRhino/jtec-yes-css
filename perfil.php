@@ -204,6 +204,52 @@ if ($count_views['COUNT(*)'] == 0) {
 			</div>
   		</div>
 
+<!-- Modal -->
+	<div class="modal fade" id="exampleModal<?php echo $noticia['id'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			<span id="edit"></span>
+			<div class="modal-header">
+				<span></span>
+			    <h5 class="modal-title" id="exampleModalLabel">Editar User #<b id="id_<?php echo $noticia['id']; ?>"><?php echo $noticia['id']; ?></b></h5>
+			    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+			    <!-- Inputs -->
+			    <form id="form_edit_noticia_<?php echo $noticia['id']; ?>" method="post" enctype="multipart/form-data">
+				<label>Nome da Notícia</label>
+			    <input class="form-control" type="text" name="nm_noticia" placeholder="Titulo" value="<?php echo $noticia['nm_noticia']; ?>">
+			    <label>Descricão</label>
+				<input class="form-control" type="text" name="ds_noticia" placeholder="Descrição" value="<?php echo $noticia['ds_noticia']; ?>">
+
+				<input style="display: none;" type="text" name="id" placeholder="id" value="<?php echo $noticia['id']; ?>"><br>
+
+				<input type="file" name="ds_img"><br>
+				<input type="file" name="ds_img_2"><br>
+				<?php 
+					//Consulta Select Categoria
+					$script_categoria_select = $conn->prepare("SELECT * FROM tb_categoria");
+					$script_categoria_select->execute();
+					//Consulta User
+					$script_user_select = $conn->prepare("SELECT * FROM tb_users");
+					$script_user_select->execute();
+				?>
+				<!-- Select Categoria -->
+				<label>Categoria</label>
+				<select class="form-control" name="categoria">
+				<?php while($categoria_select = $script_categoria_select->fetch(PDO::FETCH_ASSOC)){?>
+					<option value="<?php echo $categoria_select['id'];?>"><?php echo $categoria_select['nm_categoria'];?></option>
+				<?php }?>
+				</select>
+			</div>
+			<div class="modal-footer">
+			    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+			    <button type="submit" class="btn btn-primary" id="edit_noticia_<?php echo $noticia['id']; ?>">Salvar Alterações</button>
+			</form>
+			</div>
+			</div>
+		</div>
+	</div>
 	<!-- Script editar notícia -->
 	<span></span>
 	<script type="text/javascript">
@@ -213,7 +259,7 @@ $(document).ready(function() {
     var form_data = new FormData(this);
 
   $.ajax({
-    url: 'edit_noticia.php', // Arquivo PHP para processar os dados
+    url: 'php/edit_noticia.php', // Arquivo PHP para processar os dados
     type: 'POST',
     data: form_data, 
     contentType: false,
@@ -231,47 +277,6 @@ $(document).ready(function() {
 });
 	</script>
 
-<!-- Modal -->
-	<div class="modal fade" id="exampleModal<?php echo $noticia['id'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-			<span id="edit"></span>
-			<div class="modal-header">
-				<span></span>
-			    <h5 class="modal-title" id="exampleModalLabel">Editar User #<b id="id_<?php echo $noticia['id']; ?>"><?php echo $noticia['id']; ?></b></h5>
-			    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<div class="modal-body">
-			    <!-- Inputs -->
-				<label>Nome da Notícia</label>
-			    <input class="form-control" type="text" id="nm_noticia_<?php echo $noticia['id']; ?>" placeholder="Titulo" value="<?php echo $noticia['nm_noticia']; ?>">
-			    <label>Descricão</label>
-				<input class="form-control" type="text" id="ds_noticia_<?php echo $noticia['id']; ?>" placeholder="Descrição" value="<?php echo $noticia['ds_noticia']; ?>">
-				<input type="file" name="ds_img"><br>
-					<input type="file" name="ds_img_2"><br>
-				<?php 
-					//Consulta Select Categoria
-					$script_categoria_select = $conn->prepare("SELECT * FROM tb_categoria");
-					$script_categoria_select->execute();
-					//Consulta User
-					$script_user_select = $conn->prepare("SELECT * FROM tb_users");
-					$script_user_select->execute();
-				?>
-				<!-- Select Categoria -->
-				<label>Categoria</label>
-				<select class="form-control" id="option_categoria_<?php echo $noticia['id'];?>">
-				<?php while($categoria_select = $script_categoria_select->fetch(PDO::FETCH_ASSOC)){?>
-					<option value="<?php echo $categoria_select['id'];?>"><?php echo $categoria_select['nm_categoria'];?></option>
-				<?php }?>
-				</select>
-			</div>
-			<div class="modal-footer">
-			    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-			    <button type="button" class="btn btn-primary" id="edit_noticia_<?php echo $noticia['id']; ?>">Salvar Alterações</button>
-			</div>
-			</div>
-		</div>
-	</div>
 <?php }
 			}else{
 				echo "Sem noticia";

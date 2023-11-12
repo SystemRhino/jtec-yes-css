@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('php/conecta.php');
 if(!isset($_GET['id'])){
     header('location:./');
