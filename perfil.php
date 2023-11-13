@@ -220,7 +220,7 @@ if ($count_views['COUNT(*)'] == 0) {
 				<label>Nome da Notícia</label>
 			    <input class="form-control" type="text" name="nm_noticia" placeholder="Titulo" value="<?php echo $noticia['nm_noticia']; ?>">
 			    <label>Descricão</label>
-				<input class="form-control" type="text" name="ds_noticia" placeholder="Descrição" value="<?php echo $noticia['ds_noticia']; ?>">
+				<textarea class="form-control" type="text" name="ds_noticia" placeholder="Descrição"><?php echo $noticia['ds_noticia']; ?></textarea>
 
 				<input style="display: none;" type="text" name="id" placeholder="id" value="<?php echo $noticia['id']; ?>"><br>
 
