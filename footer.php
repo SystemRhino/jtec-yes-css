@@ -26,12 +26,13 @@
     <?php  
       while ($comentario = $script_comentarios->fetch(PDO::FETCH_ASSOC)) {
       $id_user = $comentario['id_user'];
+      $id_comentario = $comentario['id_noticia'];
       $script_users = $conn->prepare("SELECT * FROM tb_users WHERE id ='$id_user'");
       $script_users->execute(); 
       $user = $script_users->fetch(PDO::FETCH_ASSOC);
     ?>
     <div id="coment-div-footer" class="mt-2 w-75">
-    <div>
+    <div onclick="window.location.href = 'view.php?id=<?= $id_comentario;?>'">
 	  <img id="img-autor-footer" src="img/<?php echo $user['ds_img'];?>">
     </div>
     <div class="text-start-footer">

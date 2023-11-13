@@ -18,6 +18,11 @@ $noticia = $script_noticias->fetch(PDO::FETCH_ASSOC);
 $id_categoria = $noticia['id_categoria'];
 $id_autor = $noticia['id_autor'];
 
+//Consulta Ultimas Noticias
+$script_ultimas_noticias = $conn->prepare("SELECT * FROM tb_noticia");
+$script_ultimas_noticias->execute();
+$ultima_noticia = $script_ultimas_noticias->fetch(PDO::FETCH_ASSOC);
+
 //Consultar autor
 $script_autor = $conn->prepare("SELECT * FROM tb_users WHERE id ='$id_autor'");
 $script_autor->execute();
@@ -72,9 +77,9 @@ $att_views->execute();
     <hr>
     <div class="d-flex flex-wrap align-items-end">
       <i class="col btn">Data de publicação: <?php echo $noticia['data_post']; ?></i>
-      <i class="col btn">Nº de Curtidas: <?php echo $noticia['nr_curtidas']; ?></i>
+      
     </div>
-        <button class="btn" id="curtir"><img width="30" src="img/icons8-gosto-disso-50.png"></button>
+        <button class="btn" id="curtir"><img width="30" src="img/icons8-gosto-disso-50.png"> <?php echo $noticia['nr_curtidas']; ?></button>
         <!-- Compartilhar nas redes sociais -->
         <button class="copyTest col btn" data-bs-toggle="modal" data-bs-target="#modalCompartilhar"><img width="35" src="img/icons8-compartilhar-50.png"></button>
           <!-- Modal -->
@@ -103,6 +108,7 @@ $att_views->execute();
 	    <div id="autor-seguir">
 		    <h5><?php echo $autor['nm_user'];?></h5>
 	      <!-- Seguir autor -->
+      <?php if($id_autor !== $_SESSION['id']){?>
         <div class="d-flex align-items-end flex-wrap align-content-end">
         <?php if ($session == true){?>
 	      <?php if ($script_seguindo_autor->rowCount()>0){ ?>
@@ -111,17 +117,36 @@ $att_views->execute();
 	        <button class="btn font-btn" id="seguir"><img width="15" src="img/icons8-a-seguir-32.png"> Seguir</button>
 	      <?php }} ?>
         </div>
+      <?php }else{?>
+        <p>Você</p>
+      <?php }?>
 	    </div>	
     </div>
-    <div class="bg-light" style="height: 300px; width: auto; margin-top: 10px;">
-          <h3>Últimas postagens</h3>
+
+          <h3>Última postagens</h3>
+
+    <div id="overflow-card" class="card-group">
+      <div class="card-view" onclick="window.location.href = 'view.php?id=<?= $ultima_noticia['id']?>'">
+          <img id="img-categoria" src="img/<?php echo $ultima_noticia['img_1']; ?>">
+          <div class="card-body"> 
+            <h5><?php echo $ultima_noticia['nm_noticia']."<br>"; ?></h5>
+            <p><?php echo $ultima_noticia['ds_noticia']."<br>"; ?></p>
+          </div>
+        </div>
     </div>
-    <div class="bg-light" style="height: 300px; width: auto; margin-top: 10px;">
-          <h3>Últimas postagens</h3>
+
+          <h3>Última postagens</h3>
+
+    <div id="overflow-card" class="card-group">
+      <div class="card-view" onclick="window.location.href = 'view.php?id=<?= $ultima_noticia['id']?>'">
+          <img id="img-categoria" src="img/<?php echo $ultima_noticia['img_1']; ?>">
+          <div class="card-body"> 
+            <h5><?php echo $ultima_noticia['nm_noticia']."<br>"; ?></h5>
+            <p><?php echo $ultima_noticia['ds_noticia']."<br>"; ?></p>
+          </div>
+        </div>
     </div>
-    <div class="bg-light" style="height: 300px; width: auto; margin-top: 10px;">
-          <h3>Últimas postagens</h3>
-    </div>
+
   </div>
 </div>
 </div>
